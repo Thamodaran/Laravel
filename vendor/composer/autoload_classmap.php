@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCollumnToPlanUsers' => $baseDir . '/database/migrations/2017_09_25_135242_add_collumn_to_plan_users.php',
     'AddCollumnsForMonthList' => $baseDir . '/database/migrations/2017_09_25_073635_add_collumns_for_monthList.php',
     'AddNoOfUsersInPlandetails' => $baseDir . '/database/migrations/2017_09_12_111748_add_no_of_users_In_plandetails.php',
     'AddPlaceToDoTask' => $baseDir . '/database/migrations/2017_09_08_140413_add_place_to_do_task.php',
@@ -483,6 +484,7 @@ return array(
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PlanDetails' => $baseDir . '/database/migrations/2017_09_12_104103_plan_details.php',
     'PlanUsers' => $baseDir . '/database/migrations/2017_09_11_101837_plan_users.php',
+    'RenameCollumnNameToPlanUsers' => $baseDir . '/database/migrations/2017_09_25_141613_rename_collumn_name_to_plan_users.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',
     'SebastianBergmann\\Comparator\\Comparator' => $vendorDir . '/sebastian/comparator/src/Comparator.php',
     'SebastianBergmann\\Comparator\\ComparisonFailure' => $vendorDir . '/sebastian/comparator/src/ComparisonFailure.php',

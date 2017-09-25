@@ -18,10 +18,9 @@ class Controller extends BaseController
 
     public function index()
     {
-          return view('tasks', [
-              // 'tasks' => Task::orderBy('created_at', 'asc')->get()
-              'tasks' => Planuser::orderBy('created_at', 'asc')->get()
-          ]);
+      $planDetail = Plandetail::orderBy('created_at', 'asc')->get();
+      $tasks = Planuser::orderBy('created_at', 'asc')->get();
+      return view('tasks', compact('tasks','planDetail'));
     }
 
     public function store(Request $request)

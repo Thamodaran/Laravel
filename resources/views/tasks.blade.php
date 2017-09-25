@@ -51,9 +51,19 @@
               <input type="text" name="phone" id="task-name" class="form-control" value="{{ old('task') }}">
             </div>
             <div class="form-group col-sm-6">
+              <label for="pwd">Plan type:</label>
+              <select name="plantype" class="form-control">
+                <option value="0">Select a Plan</option>
+                @foreach ($planDetail as $plan)
+                <option value="{{$plan->type}}">{{$plan->name}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group col-sm-6">
               <label for="pwd">Address:</label>
               <textarea class="form-control" name="address" rows="5" id="address"></textarea>
             </div>
+
             <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-12">
                     <button type="submit" class="btn btn-default">
