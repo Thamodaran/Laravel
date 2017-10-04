@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCollToMonthlyList' => $baseDir . '/database/migrations/2017_09_28_043255_add_coll_to_monthly_list.php',
     'AddCollumnToPlanUsers' => $baseDir . '/database/migrations/2017_09_25_135242_add_collumn_to_plan_users.php',
     'AddCollumnsForMonthList' => $baseDir . '/database/migrations/2017_09_25_073635_add_collumns_for_monthList.php',
     'AddNoOfUsersInPlandetails' => $baseDir . '/database/migrations/2017_09_12_111748_add_no_of_users_In_plandetails.php',

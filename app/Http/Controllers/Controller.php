@@ -78,17 +78,12 @@ class Controller extends BaseController
     public function monthlylistindex()
     {
       $userInMonthList = array();
-        // $planUserList = Planuser::orderBy('created_at', 'asc')->get();
-
-        $monthlylist = Monthlylist::orderBy('created_at', 'asc')->get();
+        $monthlylist = Monthlylist::join('planusers','planusers.id','=','monthlylists.user_id')->get();
         foreach ($monthlylist as $key => $monthlyRecord) {
           $userInMonthList[] = $monthlyRecord->user_id;
         }
         $planUserList = Planuser::whereNotIn('id', $userInMonthList)->get();//orderBy('created_at', 'asc')->get();
         return view('monthlylist', compact('planUserList','monthlylist'));
-          // return view('monthlylist', [
-          //     'monthlylist' => Monthlylist::orderBy('created_at', 'asc')->get()
-          // ]);
     }
 
     public function storemonthlylist(Request $request)
@@ -104,6 +99,13 @@ class Controller extends BaseController
       $monthlylist->to_be_paid = $request->to_be_paid;
       $monthlylist->amount_recived = $request->amount_recived;
       $monthlylist->balance = $request->balance;
+      // var_dump($request->seet_taken_by);exit;
+      if($request->seet_taken_by === 'on') {
+          $monthlylist->seet_taken_by = 1;
+      } else {
+        $monthlylist->seet_taken_by = 0;
+      }
+
       $monthlylist->save();
 
       return redirect('/monthlylist');
