@@ -65,6 +65,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::delete('/monthlylist/{id}', 'Controller@destroymonthlylist');
     
+    Route::get('/monthlylistdetails', 'Controller@monthlylistdetails');
+    
     /**
      * Delete Task
      */

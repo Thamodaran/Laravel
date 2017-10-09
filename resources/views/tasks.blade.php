@@ -51,11 +51,12 @@
               <input type="text" name="phone" id="task-name" class="form-control" value="{{ old('task') }}">
             </div>
             <div class="form-group col-sm-6">
+            <!--<h1>{{$planDetail[0]->id}}</h1>-->
               <label for="pwd">Plan type:</label>
               <select name="plantype" class="form-control">
                 <option value="0">Select a Plan</option>
                 @foreach ($planDetail as $plan)
-                <option value="{{$plan->type}}">{{$plan->name}}</option>
+                <option value="{{$plan->id}}">{{$plan->name}}</option>
                 @endforeach
               </select>
             </div>
@@ -67,7 +68,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-6 col-sm-12">
                     <button type="submit" class="btn btn-default">
-                        <i class="fa fa-btn fa-plus"></i>Add Task
+                        <i class="fa fa-btn fa-plus"></i>Add User
                     </button>
                 </div>
             </div>
@@ -86,6 +87,7 @@
                                 <th>Mobile Number</th>
                                 <th>Phone Number</th>
                                 <th>Address</th>
+                                <th>Plan</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -95,6 +97,7 @@
                                         <td class="table-text"><div>{{ $task->mobile_number }}</div></td>
                                         <td class="table-text"><div>{{ $task->ph_number }}</div></td>
                                         <td class="table-text"><div>{{ $task->address }}</div></td>
+                                        <td class="table-text"><div>{{ $task->plan_id }}</div></td>
 
                                         <!-- Task Delete Button -->
                                         <td>
@@ -103,7 +106,7 @@
                                                 {{ method_field('DELETE') }}
 
                                                 <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>Delete
+                                                    <i class="fa fa-btn fa-trash"></i>
                                                 </button>
                                             </form>
                                         </td>
