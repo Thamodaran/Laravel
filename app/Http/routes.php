@@ -63,9 +63,13 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/monthlylist', 'Controller@storemonthlylist');
 
+    Route::post('/monthlylistupdate', 'Controller@updatemonthlylist');    
+
     Route::delete('/monthlylist/{id}', 'Controller@destroymonthlylist');
     
     Route::get('/monthlylistdetails', 'Controller@monthlylistdetails');
+    
+    Route::post('/monthamount', 'Controller@storemonthlyamount');
     
     /**
      * Delete Task

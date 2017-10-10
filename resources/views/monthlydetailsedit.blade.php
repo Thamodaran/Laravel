@@ -21,9 +21,12 @@
                 <th>Action</th>
                 </thead>
                 <tbody>
+                    {{$monthlylist}}
                     @if (count($monthlylist) > 0)
                         @foreach ($monthlylist as $monthly)
-                        <tr>
+                
+                        <tr>                            
+                            <form action="{{ url('monthlylistupdate') }}" method="POST">
                             <td class="table-text"><div>{{ $monthly->name }}</div></td>
                             <td class="table-text"><div>{{ $monthly->amount }}</div></td>
                             <td class="table-text"><div>{{ $monthly->talu_amount }}</div></td>
@@ -40,6 +43,18 @@
                             @endif    
                             <td class="table-text"><div>{{ $monthly->balance }}</div></td>
                             <!-- Task Delete Button -->
+                            
+<!--                            <td>
+                                <form action="{{ url('monthlylistupdate') }}" method="POST">-->
+                                    <!--{{ //csrf_field() }}-->
+                                    <!--{{ method_field('POST') }}-->
+<!--
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa fa-btn fa-edit"></i>
+                                    </button>
+                                </form>
+                            </td>-->
+                            </form>
                             <td>
                                 <form action="{{ url('monthlylist/'.$monthly->monthly_id) }}" method="POST">
                                     {{ csrf_field() }}
@@ -50,17 +65,8 @@
                                     </button>
                                 </form>
                             </td>
-                            <td>
-                                <form action="{{ url('monthlylist/'.$monthly->monthly_id) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('POST') }}
-
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="fa fa-btn fa-edit"></i>
-                                    </button>
-                                </form>
-                            </td>
                         </tr>
+                        
                         @endforeach
                         @else
                         <tr>

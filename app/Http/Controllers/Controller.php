@@ -10,6 +10,7 @@ use App\Task;
 use App\Planuser;
 use App\Plandetail;
 use App\Monthlylist;
+use App\Monthlyamount;
 use Illuminate\Http\Request;
 
 class Controller extends BaseController
@@ -115,13 +116,13 @@ class Controller extends BaseController
             // 'name' => 'required|max:255',
         ]);
       $monthlylist = new Monthlylist;
-      // print"<pre>";var_dump($request->userId);exit;
+//       print"<pre>";var_dump($request->amount);exit;
       $monthlylist->user_id = $request->userId;
-      $monthlylist->amount = $request->amount;
-      $monthlylist->talu_amount = $request->talu_amount;
-      $monthlylist->to_be_paid = $request->to_be_paid;
-      $monthlylist->amount_recived = $request->amount_recived;
-      $monthlylist->balance = $request->balance;
+      $monthlylist->amount = intval($request->amount);
+      $monthlylist->talu_amount = intval($request->talu_amount);
+      $monthlylist->to_be_paid = intval($request->to_be_paid);
+      $monthlylist->amount_recived = intval($request->amount_recived);
+      $monthlylist->balance = intval($request->balance);
       $now = new \DateTime('now');
 //      print_r($now->format('F'));exit;
       $monthlylist->month = $now->format('F');
@@ -142,5 +143,35 @@ class Controller extends BaseController
       Monthlylist::findOrFail($id)->delete();
 
       return redirect('/monthlylistdetails');
+    }
+    
+    public function updatemonthlylist(Request $request)
+    {
+        $monthlylist = Monthlylist::where('id', '=', 9)->get();
+        print"<pre>";print_r($request->amount_recived);exit;
+        return view('monthlydetailsedit', compact('monthlylist'));
+//        return view('monthlydetailsedit', [
+//              'monthlylist' => $res
+//          ]);
+//      Monthlylist::findOrFail($id)->delete();
+//
+//      return redirect('/monthlylistdetails');
+    }
+    
+    public function storemonthlyamount(Request $request)
+    {        
+//           print"<pre>";var_dump($request->total_tallu_amt);exit;
+//        $monthlylist->user_id = $request->userId;
+        $monthlyamount = new Monthlyamount;
+        $monthlyamount->total_tallu_amt = intval($request->total_tallu_amt);
+        $monthlyamount->plan_id = intval($request->plan_id);
+//        $monthlyamount->to_be_paid = intval($request->to_be_paid);
+        $now = new \DateTime('now');
+    //      print_r($now->format('F'));exit;
+        $monthlyamount->month = $now->format('F');
+        // var_dump($request->seet_taken_by);exit;
+        $monthlyamount->save();
+
+        return redirect('/monthlylist');
     }
 }
