@@ -14,23 +14,27 @@
                 </select>
             </div>
        </div>
-       
+
         <script>
             $(document).ready(function(){
                 var plantypes = $("#monthlylist .panel").find("#planType_");
-                console.log(plantypes.prevObject);
+                // console.log(plantypes.prevObject);
                 $("select").change(function(){
                     $( "select option:selected").each(function(){
                         var selected = $(this);
                         $(plantypes.prevObject).each(function(){
-                            console.log($(this)[0].getAttribute('id'));
-                            console.log('planType_'+selected.attr("value"));
+                            // console.log($(this)[0].getAttribute('id'));
+                            // console.log('planType_'+selected.attr("value"));
                             if($(this)[0].getAttribute('id') !== 'filter') {
+                              if(selected.attr("value") != 0) {
                                 if('planType_'+selected.attr("value")==$(this)[0].getAttribute('id')){
                                     $("#"+$(this)[0].getAttribute('id')).show();
                                 } else {
                                     $("#"+$(this)[0].getAttribute('id')).hide();
                                 }
+                              } else {
+                                $("#"+$(this)[0].getAttribute('id')).show();
+                              }
                             }
                         });
 
@@ -38,7 +42,7 @@
                 })//.change();
             });
         </script>
-       
+
         @foreach ($plandetail as $key => $plan)
         <div class="panel panel-default" id="planType_{{$plan->id}}">
             <div class="panel-heading">
@@ -59,11 +63,11 @@
                         </button>
                     </form>
                 </span>
-            </div>            
+            </div>
             <div class="panel-body">
                 <table class="table table-striped task-table">
                     <!--<thead>-->
-                    <tr> 
+                    <tr>
                         <th>Name</th>
                         <th>Plan name</th>
                         <th>Amount</th>
@@ -94,7 +98,7 @@
                                         <td class="col-sm-2">
                                             <div class="form-group">
                                                 <!-- <label for="pwd">Talu amount:</label> -->
-                                                <input type="text" onchange="toBePaidCalculation(this)" name="talu_amount" id="monthlist-taluAmount" class="form-control" value="{{ old('task') }}">
+                                                <input type="text" onchange="toBePaidCalculation(this)" name="talu_amount" id="monthlist-taluAmount_{{$plan->id}}" class="form-control" value="{{ old('task') }}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
