@@ -3,31 +3,44 @@
 @section('content')
 
 <div class="container">
-    <!-- <div class="panel panel-default">
-        <div class="panel-heading">
-            Details
-        </div>
+    <div class="col-sm-12" id="monthlylist">
+       <div class="panel panel-default" id="filter">
+            <div class="panel-heading">
+                <select name="plantype" class="form-control">
+                    <option value="0">Select a Plan</option>
+                    @foreach ($plandetail as $plan)
+                    <option value="{{$plan->id}}">{{$plan->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+       </div>
+       
+        <script>
+            $(document).ready(function(){
+                var plantypes = $("#monthlylist .panel").find("#planType_");
+                console.log(plantypes.prevObject);
+                $("select").change(function(){
+                    $( "select option:selected").each(function(){
+                        var selected = $(this);
+                        $(plantypes.prevObject).each(function(){
+                            console.log($(this)[0].getAttribute('id'));
+                            console.log('planType_'+selected.attr("value"));
+                            if($(this)[0].getAttribute('id') !== 'filter') {
+                                if('planType_'+selected.attr("value")==$(this)[0].getAttribute('id')){
+                                    $("#"+$(this)[0].getAttribute('id')).show();
+                                } else {
+                                    $("#"+$(this)[0].getAttribute('id')).hide();
+                                }
+                            }
+                        });
 
-        <div class="panel-body">
-          <table class="table table-striped task-table">
-            <tbody>
-              <tr>
-                <th>Seet type : </th> <td>1 Lack</td>
-                <th>Total talu amount : </th> <td>15000</td>
-                <th>Seet taken by : </th> <td>Kumar</td>
-              </tr>
-              <tr>
-                <th>Month number : </th> <td>Jan -- 1</td>
-                <th>To be pay : </th> <td>205000</td>
-                <th>No of users : </th> <td>20</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-  </div> --> 
-   <div class="col-sm-12">
+                    });
+                })//.change();
+            });
+        </script>
+       
         @foreach ($plandetail as $key => $plan)
-        <div class="panel panel-default" id="planType_{{$key}}">
+        <div class="panel panel-default" id="planType_{{$plan->id}}">
             <div class="panel-heading">
                 <span style="display: inline-block;margin-right: 2%;"><b>Plan Name :</b> {{$plan->name}}</span>
                 <span style="display: inline-block;margin-right: 2%;"><b>Total Amount :</b> {{$plan->amount}}</span>
@@ -38,9 +51,9 @@
                 <span style="display: inline-block; width: 8%;">
                     <form action="{{ url('monthamount')}}" method="POST" class="form-horizontal">
                         {{ csrf_field() }}
-                        <input type="text" name="total_tallu_amt" onkeyup="totalTalluAmountCalculation(this)" id="total_tallu_amt_{{$key}}" class="form-control" value="">
+                        <input type="text" name="total_tallu_amt" onkeyup="totalTalluAmountCalculation(this)" id="total_tallu_amt_{{$plan->id}}" class="form-control" value="">
                         <input type="hidden" name="plan_id" id="plan_id" class="form-control" value="{{$plan->id}}">
-                        <input type="hidden" name="no_of_months" id="no_of_months_{{$key}}" class="form-control" value="{{$plan->no_of_months}}">
+                        <input type="hidden" name="no_of_months" id="no_of_months_{{$plan->id}}" class="form-control" value="{{$plan->no_of_months}}">
                         <button type="submit" class="btn btn-default">
                             <i class="fa fa-btn fa-plus"></i>
                         </button>
@@ -62,7 +75,7 @@
                         <th>Action</th>
                     </tr>
                     <!--</thead>-->
-                    <tbody class="plan-type-tbody" id="plan-type-tbody_{{$key}}">
+                    <tbody class="plan-type-tbody" id="plan-type-tbody_{{$plan->id}}">
                         @foreach ($planUserList as $planUser)
                             @if ($plan->name == $planUser->planname)
                                 <form action="{{ url('monthlylist')}}" method="POST" class="form-horizontal">
