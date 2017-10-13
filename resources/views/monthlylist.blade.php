@@ -80,7 +80,8 @@
                     </tr>
                     <!--</thead>-->
                     <tbody class="plan-type-tbody" id="plan-type-tbody_{{$plan->id}}">
-                        @foreach ($planUserList as $planUser)
+                      {{$userkey=0}}
+                        @foreach ($planUserList as $userkey => $planUser)
                             @if ($plan->name == $planUser->planname)
                                 <form action="{{ url('monthlylist')}}" method="POST" class="form-horizontal">
                                     {{ csrf_field() }}
@@ -98,13 +99,13 @@
                                         <td class="col-sm-2">
                                             <div class="form-group">
                                                 <!-- <label for="pwd">Talu amount:</label> -->
-                                                <input type="text" onchange="toBePaidCalculation(this)" name="talu_amount" id="monthlist-taluAmount_{{$plan->id}}" class="form-control" value="{{ old('task') }}">
+                                                <input type="text" onchange="toBePaidCalculation(this)" name="talu_amount" id="monthlist-taluAmount_{{$plan->id}}_{{$userkey}}" class="form-control monthlist" value="{{ old('task') }}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
                                             <div class="form-group">
                                                 <!-- <label for="pwd">To be paid:</label> -->
-                                                <input type="text" name="to_be_paid" readonly id="monthlist-toBePaid" class="form-control" value="{{ old('task') }}">
+                                                <input type="text" name="to_be_paid" readonly id="monthlist-toBePaid_{{$plan->id}}_{{$userkey}}" class="form-control" value="{{ old('task') }}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
@@ -116,7 +117,7 @@
                                         <td class="col-sm-2">
                                             <div class="form-group">
                                                 <!-- <label for="pwd">Balance:</label> -->
-                                                <input type="text" name="balance" disabled="disabled" id="monthlist-balance" class="form-control" value="{{ old('task') }}">
+                                                <input type="text" name="balance" readonly id="monthlist-balance" class="form-control" value="{{ old('task') }}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
