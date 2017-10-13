@@ -58,9 +58,6 @@
                         <input type="text" name="total_tallu_amt" onkeyup="totalTalluAmountCalculation(this)" id="total_tallu_amt_{{$plan->id}}" class="form-control" value="">
                         <input type="hidden" name="plan_id" id="plan_id" class="form-control" value="{{$plan->id}}">
                         <input type="hidden" name="no_of_months" id="no_of_months_{{$plan->id}}" class="form-control" value="{{$plan->no_of_months}}">
-                        <button type="submit" class="btn btn-default">
-                            <i class="fa fa-btn fa-plus"></i>
-                        </button>
                     </form>
                 </span>
             </div>
@@ -80,9 +77,12 @@
                     </tr>
                     <!--</thead>-->
                     <tbody class="plan-type-tbody" id="plan-type-tbody_{{$plan->id}}">
-                      {{$userkey=0}}
+                      <input type="hidden" value = {{$usercount = 0}}>
                         @foreach ($planUserList as $userkey => $planUser)
+
                             @if ($plan->name == $planUser->planname)
+
+
                                 <form action="{{ url('monthlylist')}}" method="POST" class="form-horizontal">
                                     {{ csrf_field() }}
                                     <tr>
@@ -92,37 +92,31 @@
                                         <td>{{$planUser->planname}}</td>
                                         <td class="col-sm-2">
                                             <div class="form-group">
-                                                <!-- <label for="pwd">Amount:</label> -->
                                                 <input type="text" name="amount" readonly id="monthlist-amount" class="form-control" value="{{$amount}}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
                                             <div class="form-group">
-                                                <!-- <label for="pwd">Talu amount:</label> -->
-                                                <input type="text" onchange="toBePaidCalculation(this)" name="talu_amount" id="monthlist-taluAmount_{{$plan->id}}_{{$userkey}}" class="form-control monthlist" value="{{ old('task') }}">
+                                                <input type="text" name="talu_amount" readonly id="monthlist-taluAmount_{{$plan->id}}_{{$usercount}}" class="form-control monthlist" value="{{ old('task') }}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
                                             <div class="form-group">
-                                                <!-- <label for="pwd">To be paid:</label> -->
-                                                <input type="text" name="to_be_paid" readonly id="monthlist-toBePaid_{{$plan->id}}_{{$userkey}}" class="form-control" value="{{ old('task') }}">
+                                                <input type="text" name="to_be_paid" readonly id="monthlist-toBePaid_{{$plan->id}}_{{$usercount}}" class="form-control" value="{{ old('task') }}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
                                             <div class="form-group">
-                                                <!-- <label for="pwd">Amount recived:</label> -->
                                                 <input type="text" name="amount_recived" id="monthlist-amountRecived" class="form-control" value="{{ old('task') }}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
                                             <div class="form-group">
-                                                <!-- <label for="pwd">Balance:</label> -->
                                                 <input type="text" name="balance" readonly id="monthlist-balance" class="form-control" value="{{ old('task') }}">
                                             </div>
                                         </td>
                                         <td class="col-sm-2">
                                             <div class="form-group">
-                                                <!-- <label for="pwd">Balance:</label> -->
                                                 <input type="checkbox" name="seet_taken_by" id="monthlist-balance" class="">
                                             </div>
                                         </td>
@@ -137,6 +131,7 @@
                                         </td>
                                     </tr>
                                 </form>
+                                <input type="hidden" value = {{ ++$usercount }}>
                             @endif
                         @endforeach
                     </tbody>
