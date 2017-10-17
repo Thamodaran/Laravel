@@ -98,7 +98,12 @@ class Controller extends BaseController
                 ->whereNotIn('planusers.id', $userInMonthList)//->where('planusers.plan_id', '=', '1')
                 ->select( 'planusers.*','plandetail.*','planusers.name AS planusername','plandetail.name AS planname', 'planusers.id as planusers_id')->get();
 //        print"<pre>";print_r($planUserList);exit;
-        $plandetail = Plandetail::get();
+//        $plandetail = Plandetail::get();
+        $plandetail = Plandetail::leftJoin('monthlyamounts AS monthlyamounts','monthlyamounts.plan_id','=','plandetails.id')
+                ->select( 'monthlyamounts.id AS monthlyamount_id','monthlyamounts.plan_id AS monthlyamount_plan_id',
+                        'monthlyamounts.total_tallu_amt AS monthlyamount_tot_tallu_amt',
+                        'monthlyamounts.month AS monthlyamount_month',
+                        'plandetails.*')->get();
 //        print"<pre>";print_r($plandetail);exit;
         return view('monthlylist', compact('planUserList','monthlylist','plandetail'));
     }
@@ -123,6 +128,7 @@ class Controller extends BaseController
       $monthlylist->to_be_paid = intval($request->to_be_paid);
       $monthlylist->amount_recived = intval($request->amount_recived);
       $monthlylist->balance = intval($request->balance);
+      $monthlylist->plan_id = intval($request->planId);
       $now = new \DateTime('now');
 //      print_r($now->format('F'));exit;
       $monthlylist->month = $now->format('F');
@@ -159,19 +165,24 @@ class Controller extends BaseController
     }
     
     public function storemonthlyamount(Request $request)
-    {        
-//           print"<pre>";var_dump($request->total_tallu_amt);exit;
-//        $monthlylist->user_id = $request->userId;
-        $monthlyamount = new Monthlyamount;
-        $monthlyamount->total_tallu_amt = intval($request->total_tallu_amt);
-        $monthlyamount->plan_id = intval($request->plan_id);
-//        $monthlyamount->to_be_paid = intval($request->to_be_paid);
-        $now = new \DateTime('now');
-    //      print_r($now->format('F'));exit;
-        $monthlyamount->month = $now->format('F');
-        // var_dump($request->seet_taken_by);exit;
-        $monthlyamount->save();
-
+    {
+//        print_r($request->monthlyamount_id);exit;
+//        var_dump($request->monthlyamount_id);exit;
+        if($request->monthlyamount_id === ''){
+            $monthlyamount = new Monthlyamount;
+            $monthlyamount->total_tallu_amt = intval($request->total_tallu_amt);
+            $monthlyamount->plan_id = intval($request->plan_id);
+            $now = new \DateTime('now');
+            $monthlyamount->month = $now->format('F');
+            $monthlyamount->save();
+        } else {
+            $monthlyamountedit = Monthlyamount::where('id', '=', $request->monthlyamount_id)->first();
+            if($request->total_tallu_amt !=='') {
+                $monthlyamountedit->total_tallu_amt = intval($request->total_tallu_amt);
+                $monthlyamountedit->save();
+    //            print"<pre>";print_r($monthlyamount);exit;
+            }
+        }
         return redirect('/monthlylist');
     }
 }

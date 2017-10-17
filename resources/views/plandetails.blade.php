@@ -3,37 +3,42 @@
 @section('content')
     <div class="container">
         <div class="col-sm-12">
-            <form action="{{ url('plandetail')}}" method="POST" class="form-horizontal">
-                {{ csrf_field() }}
-            <div class="form-group col-sm-6">
-              <label for="usr">Name:</label>
-              <input type="text" name="name" id="plandetail-name" class="form-control" value="{{ old('task') }}">
-            </div>
-            <div class="form-group col-sm-6">
-              <label for="pwd">Amount:</label>
-              <input type="text" name="amount" id="plandetail-amount" class="form-control" value="{{ old('task') }}">
-            </div>
-            <div class="form-group col-sm-6">
-              <label for="pwd">Number of months:</label>
-              <input type="text" name="numberofmonths" id="plandetail-numberofmonths" class="form-control" value="{{ old('task') }}">
-            </div>
-            <div class="form-group col-sm-6">
-              <label for="pwd">Number of users:</label>
-              <input type="text" name="numberofusers" id="plandetail-numberofusers" class="form-control" value="{{ old('task') }}">
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-12">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-btn fa-plus"></i>Add Task
-                    </button>
+            <div class="panel panel-default" id="planDetails">
+                <div class="panel-heading">
+                    Add Plan
                 </div>
+                <form action="{{ url('plandetail')}}" method="POST" class="form-horizontal">
+                    {{ csrf_field() }}
+                    <div class="form-group col-sm-6">
+                        <label for="usr">Name:</label>
+                        <input type="text" name="name" id="plandetail-name" class="form-control" value="{{ old('task') }}">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="pwd">Amount:</label>
+                        <input type="text" name="amount" id="plandetail-amount" class="form-control" value="{{ old('task') }}">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="pwd">Number of months:</label>
+                        <input type="text" name="numberofmonths" id="plandetail-numberofmonths" class="form-control" value="{{ old('task') }}">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="pwd">Number of users:</label>
+                        <input type="text" name="numberofusers" id="plandetail-numberofusers" class="form-control" value="{{ old('task') }}">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-8 col-sm-4">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-btn fa-plus"></i>Add Task
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </form>
             <!-- Current Tasks -->
             @if (count($plandetail) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Current Tasks
+                        Plan Details
                     </div>
 
                     <div class="panel-body">
@@ -43,6 +48,7 @@
                                 <th>Amount</th>
                                 <th>Number of months</th>
                                 <th>Number of users</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
                                 @foreach ($plandetail as $task)
@@ -58,7 +64,7 @@
                                                 {{ method_field('DELETE') }}
 
                                                 <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-btn fa-trash"></i>Delete
+                                                    <i class="fa fa-btn fa-trash"></i>
                                                 </button>
                                             </form>
                                         </td>

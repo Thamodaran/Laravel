@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
 <div class="container">
     <div class="col-sm-12" id="monthlylist">
        <div class="panel panel-default" id="filter">
@@ -42,22 +40,23 @@
                 })//.change();
             });
         </script>
-
         @foreach ($plandetail as $key => $plan)
         <div class="panel panel-default" id="planType_{{$plan->id}}">
             <div class="panel-heading">
-                <span style="display: inline-block;margin-right: 2%;"><b>Plan Name :</b> {{$plan->name}}</span>
-                <span style="display: inline-block;margin-right: 2%;"><b>Total Amount :</b> {{$plan->amount}}</span>
-                <span style="display: inline-block;margin-right: 2%;"><b>Avg Amount :</b> {{$amount = $plan->amount/$plan->no_of_months}}</span>
-                <span style="display: inline-block;margin-right: 2%;"><b>No Of Months :</b> {{$plan->no_of_months}}</span>
-                <span style="display: inline-block;margin-right: 2%;"><b>No Of Users :</b> {{$plan->no_of_users}}</span>
+                <span style="display: inline-block;margin-right: 1%;"><b>Plan Name :</b> {{$plan->name}}</span>
+                <span style="display: inline-block;margin-right: 1%;"><b>Total Amount :</b> {{$plan->amount}}</span>
+                <span style="display: inline-block;margin-right: 1%;"><b>Avg Amount :</b> {{$amount = $plan->amount/$plan->no_of_months}}</span>
+                <span style="display: inline-block;margin-right: 1%;"><b>No Of Months :</b> {{$plan->no_of_months}}</span>
+                <span style="display: inline-block;margin-right: 1%;"><b>No Of Users :</b> {{$plan->no_of_users}}</span>
                 <span style="display: inline-block; width: 150px;"><b>Total Tallu Amount :</b> </span>
-                <span style="display: inline-block; width: 8%;">
+                <span style="display: inline-block; width: 10%;">
                     <form action="{{ url('monthamount')}}" method="POST" class="form-horizontal">
-                        {{ csrf_field() }}
-                        <input type="text" name="total_tallu_amt" onkeyup="totalTalluAmountCalculation(this)" id="total_tallu_amt_{{$plan->id}}" class="form-control" value="">
+                        {{ csrf_field() }}                        
+                        <input type="text" name="total_tallu_amt" onchange="this.form.submit()" onkeyup="totalTalluAmountCalculation(this)" 
+                               id="total_tallu_amt_{{$plan->id}}" class="form-control" value="{{$plan->monthlyamount_tot_tallu_amt}}">
                         <input type="hidden" name="plan_id" id="plan_id" class="form-control" value="{{$plan->id}}">
-                        <input type="hidden" name="no_of_months" id="no_of_months_{{$plan->id}}" class="form-control" value="{{$plan->no_of_months}}">
+                        <input type="hidden" name="no_of_months" id="plan->no_of_months" class="form-control" value="{{$plan->no_of_months}}">
+                        <input type="hidden" name="monthlyamount_id" id="monthlyamount_id" class="form-control" value="{{$plan->monthlyamount_id}}">
                     </form>
                 </span>
             </div>
@@ -88,6 +87,7 @@
                                     <tr>
                                         <td class="col-sm-2">{{$planUser->planusername}}
                                             <input type="hidden" name="userId" id="monthlist-amount" class="form-control" value="{{$planUser->planusers_id}}">
+                                            <input type="hidden" name="planId" id="monthlist-amount" class="form-control" value="{{$plan->id}}">
                                         </td>
                                         <td>{{$planUser->planname}}</td>
                                         <td class="col-sm-2">
