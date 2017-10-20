@@ -30,7 +30,6 @@ class Controller extends BaseController
             'name' => 'required|max:255',
         ]);
       $planUser = new Planuser;
-//      print_r($request->plantype);exit;
       $planUser->name = $request->name;
       $planUser->mobile_number = $request->mobile;
       $planUser->ph_number = $request->phone;
@@ -92,7 +91,7 @@ class Controller extends BaseController
             } else{
 //                print"0000";
             }
-              
+
         }//exit;
         $planUserList = Planuser::join('plandetails AS plandetail','plandetail.id','=','planusers.plan_id')
                 ->whereNotIn('planusers.id', $userInMonthList)//->where('planusers.plan_id', '=', '1')
@@ -111,7 +110,7 @@ class Controller extends BaseController
     public function monthlylistdetails()
     {
         $monthlylist = Monthlylist::join('planusers As plan','plan.id','=','monthlylists.user_id')
-                ->select('plan.*', 'monthlylists.id as monthly_id', 'monthlylists.*')->get();                
+                ->select('plan.*', 'monthlylists.id as monthly_id', 'monthlylists.*')->get();
         return view('monthlylistdetail', compact('monthlylist'));
     }
 
@@ -121,7 +120,6 @@ class Controller extends BaseController
             // 'name' => 'required|max:255',
         ]);
       $monthlylist = new Monthlylist;
-//       print"<pre>";var_dump($request->amount);exit;
       $monthlylist->user_id = $request->userId;
       $monthlylist->amount = intval($request->amount);
       $monthlylist->talu_amount = intval($request->talu_amount);
@@ -150,7 +148,7 @@ class Controller extends BaseController
 
       return redirect('/monthlylistdetails');
     }
-    
+
     public function updatemonthlylist(Request $request)
     {
         $monthlylist = Monthlylist::where('id', '=', 9)->get();
@@ -163,7 +161,7 @@ class Controller extends BaseController
 //
 //      return redirect('/monthlylistdetails');
     }
-    
+
     public function storemonthlyamount(Request $request)
     {
 //        print_r($request->monthlyamount_id);exit;
@@ -180,9 +178,34 @@ class Controller extends BaseController
             if($request->total_tallu_amt !=='') {
                 $monthlyamountedit->total_tallu_amt = intval($request->total_tallu_amt);
                 $monthlyamountedit->save();
-    //            print"<pre>";print_r($monthlyamount);exit;
             }
         }
         return redirect('/monthlylist');
+    }
+
+    public function importplanusers()
+    {
+        return view('importuser');
+    }
+
+    public function storeplanusers(Request $request)
+    {
+        $file = fopen($_FILES['file']['tmp_name'],"r");
+        $line_of_text = array();
+        while (!feof($file) ) {
+            $line_of_text[] = fgetcsv($file);
+        }
+        unset($line_of_text[0]);    // Remove header from the CSV file
+        array_pop($line_of_text);    // Remove last row from the CSV file
+        foreach ($line_of_text as $key => $line) {
+          $planUser = new Planuser;
+          $planUser->name = $line[0];
+          $planUser->mobile_number = $line[1];
+          $planUser->ph_number = $line[2];
+          $planUser->address = $line[3];
+          $planUser->plan_id = $line[4];
+          $planUser->save();
+        }
+        return redirect('/');
     }
 }

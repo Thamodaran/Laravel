@@ -125,11 +125,17 @@
                 color: #fff;
                 background: #6d7fcc;
             }
-            
+
             #sidebar ul .navbar-brand{
                 color: black;
                 /*background-color: black;*/
                 width: 100%;
+            }
+
+            nav .navbar-brand{
+                color: white;
+                /*background-color: black;*/
+                /*width: 100%;*/
             }
 
             a[data-toggle="collapse"] {
@@ -234,6 +240,9 @@
                     <a class="navbar-brand" href="{{ url('/monthlylistdetails') }}">
                         Month Details
                     </a>-->
+                    <a class="navbar-brand" href="{{ url('/importusers') }}">
+                        Import
+                    </a>
                 </div>
             </div>
         </nav>
@@ -250,7 +259,7 @@
                     <li>
                         <a class="navbar-brand" href="{{ url('/plandetail') }}">
                             Plan
-                        </a>                         
+                        </a>
                     </li>
                     <li>
                         <a class="navbar-brand" href="{{ url('/monthlylist') }}">
@@ -264,7 +273,7 @@
                     </li>
                 </ul>
             </nav>
-        <span id="sidebarCollapse" style="font-size:30px;cursor:pointer">&#9776;</span>        
+        <span id="sidebarCollapse" style="font-size:30px;cursor:pointer">&#9776;</span>
         <!--<div style="width: 500px; height: 50px; background-color: green;display: flex;"></div>-->
             <!-- Page Content Holder -->
             @yield('content')
