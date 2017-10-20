@@ -87,8 +87,8 @@
                 min-width: 250px;
                 max-width: 250px;
                 /*background: #7386D5;*/
-                background: #E0FFFF;
-                color: #fff;
+                background: #353F3E;
+                color: #FFFFFF;
                 transition: all 0.3s;
             }
 
@@ -127,7 +127,7 @@
             }
 
             #sidebar ul .navbar-brand{
-                color: black;
+                color: #FFFFFF;
                 /*background-color: black;*/
                 width: 100%;
             }
@@ -206,7 +206,8 @@
                 }
             }
             .navbar-default {
-                background-color: #008B8B;
+                /*background-color: #008B8B;*/
+                background-color: rgba(0, 139, 139, 0.9);
             }
             .container {
                 /*margin-top: 100px;*/

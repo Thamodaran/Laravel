@@ -36,6 +36,12 @@
                     </form>
                 </div>
             </div> -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Current Tasks
+                </div>
+
+                <div class="panel-body">
             <form action="{{ url('planuser')}}" method="POST" class="form-horizontal">
                 {{ csrf_field() }}
             <div class="form-group col-sm-6">
@@ -73,6 +79,8 @@
                 </div>
             </div>
           </form>
+        </div>
+      </div>
             <!-- Current Tasks -->
             @if (count($tasks) > 0)
                 <div class="panel panel-default">
