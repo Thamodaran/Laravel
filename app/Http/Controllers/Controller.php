@@ -204,7 +204,7 @@ class Controller extends BaseController
           $planUser->ph_number = $line[2];
           $planUser->address = $line[3];
           $planUser->plan_id = $line[4];
-          $planUser->save();
+          $planUser->save();           
         }
         return redirect('/');
     }
