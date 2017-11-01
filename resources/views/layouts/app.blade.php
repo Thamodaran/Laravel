@@ -8,9 +8,9 @@
         <title>Laravel Quickstart - Basic</title>
 
         <!-- Fonts -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+        <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'> -->
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
         <!-- Styles -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
@@ -253,22 +253,23 @@
             <nav id="sidebar">
                 <ul class="list-unstyled components">
                     <li>
-                        <a class="navbar-brand" href="{{ url('/') }}">
+                        <a class="fa fa-users navbar-brand" href="{{ url('/') }}">
                             User List
                         </a>
+
                     </li>
                     <li>
-                        <a class="navbar-brand" href="{{ url('/plandetail') }}">
+                        <a class="fa fa-graduation-cap navbar-brand" href="{{ url('/plandetail') }}">
                             Plan
                         </a>
                     </li>
                     <li>
-                        <a class="navbar-brand" href="{{ url('/monthlylist') }}">
+                        <a class="fa fa-calendar-plus-o navbar-brand" href="{{ url('/monthlylist') }}">
                             Monthly Entry
                         </a>
                     </li>
                     <li>
-                        <a class="navbar-brand" href="{{ url('/monthlylistdetails') }}">
+                        <a class="fa fa-calendar navbar-brand" href="{{ url('/monthlylistdetails') }}">
                             Month Details
                         </a>
                     </li>
