@@ -49,23 +49,23 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::get('/', 'Controller@index');
 
-    Route::post('/planuser', 'Controller@store');
+    // Route::post('/planuser', 'Controller@store');
+    //
+    // Route::delete('/planuser/{id}', 'Controller@destroy');
 
-    Route::delete('/planuser/{id}', 'Controller@destroy');
+    Route::get('/product', 'Controller@productindex');
 
-    Route::get('/plandetail', 'Controller@plandetailindex');
+    Route::post('/product', 'Controller@storeproduct');
 
-    Route::post('/plandetail', 'Controller@storeplandetail');
+    Route::delete('/product/{id}', 'Controller@destroyproduct');
 
-    Route::delete('/plandetail/{id}', 'Controller@destroyplandetail');
+    Route::get('/user', 'Controller@userindex');
 
-    Route::get('/monthlylist', 'Controller@monthlylistindex');
+    Route::post('/user', 'Controller@storeuser');
 
-    Route::post('/monthlylist', 'Controller@storemonthlylist');
+    Route::delete('/user/{id}', 'Controller@destroyuser');
 
-    Route::post('/monthlylistupdate', 'Controller@updatemonthlylist');
-
-    Route::delete('/monthlylist/{id}', 'Controller@destroymonthlylist');
+    Route::get('/searchajax/{name}', 'Controller@searchproduct');
 
     Route::get('/monthlylistdetails', 'Controller@monthlylistdetails');
 
@@ -73,7 +73,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/importusers', 'Controller@importplanusers');
 
-    Route::post('/importusers', 'Controller@storeplanusers');    
+    Route::post('/importusers', 'Controller@storeplanusers');
 
     /**
      * Delete Task

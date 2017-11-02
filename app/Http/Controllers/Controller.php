@@ -6,8 +6,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use App\Task;
-use App\Planuser;
+use App\Product;
+use App\User;
 use App\Plandetail;
 use App\Monthlylist;
 use App\Monthlyamount;
@@ -19,9 +19,12 @@ class Controller extends BaseController
 
     public function index()
     {
-      $planDetail = Plandetail::orderBy('created_at', 'asc')->get();
-      $tasks = Planuser::orderBy('created_at', 'asc')->get();
-      return view('tasks', compact('tasks','planDetail'));
+      // $planDetail = Plandetail::orderBy('created_at', 'asc')->get();
+      // $tasks = Planuser::orderBy('created_at', 'asc')->get();
+      $planDetail = array('test');
+      $tasks = array();
+      // return view('tasks', compact('tasks','planDetail'));
+      return view('purchase');
     }
 
     public function store(Request $request)
@@ -47,33 +50,58 @@ class Controller extends BaseController
       return redirect('/');
     }
 
-    public function plandetailindex()
+    public function productindex()
     {
-          return view('plandetails', [
-              'plandetail' => Plandetail::orderBy('created_at', 'asc')->get()
-          ]);
+          // return view('product', [
+          //     'plandetail' => Plandetail::orderBy('created_at', 'asc')->get()
+          // ]);
+          return view('product');
     }
 
-    public function storeplandetail(Request $request)
+    public function storeproduct(Request $request)
     {
-      $this->validate($request, [
-            'name' => 'required|max:255',
-        ]);
-      $planUser = new Plandetail;
-      $planUser->name = $request->name;
-      $planUser->amount = $request->amount;
-      $planUser->no_of_months = $request->numberofmonths;
-      $planUser->no_of_users = $request->numberofusers;
-      $planUser->save();
-
-      return redirect('/plandetail');
+      $product = new Product;
+      $product->p_product_name  = $request->p_product_name;
+      $product->p_product_code  = $request->p_product_code;
+      $product->p_product_model = $request->p_product_model;
+      $product->p_tax           = $request->p_tax;
+      // $product->p_image         = $request->p_image;
+      $product->save();
+      return redirect('/product');
     }
 
-    public function destroyplandetail($id)
+    public function destroyproduct($id)
     {
-      Plandetail::findOrFail($id)->delete();
+      Product::findOrFail($id)->delete();
 
-      return redirect('/plandetail');
+      return redirect('/product');
+    }
+
+    public function userindex()
+    {
+      return view('user');
+    }
+
+    public function storeuser(Request $request)
+    {
+      $user = new User;
+      $user->u_name  = $request->u_name;
+      $user->u_address  = $request->u_address;
+      $user->u_mob_number = $request->u_mob_number;
+      $user->u_ph_number  = $request->u_ph_number;
+      $user->u_e_mail  = $request->u_e_mail;
+      $user->u_type  = $request->u_type;
+      $user->u_discount  = $request->u_discount;
+      $user->save();
+      return redirect('/user');
+    }
+
+    public function searchproduct($name){
+      $products = Product::where('p_product_name', 'LIKE', '%'.$name.'%')->get();
+      return $products;
+      // return view('product', compact('products');
+      // print_r($products);
+      // exit;
     }
 
     public function monthlylistindex()
@@ -204,7 +232,7 @@ class Controller extends BaseController
           $planUser->ph_number = $line[2];
           $planUser->address = $line[3];
           $planUser->plan_id = $line[4];
-          $planUser->save();           
+          $planUser->save();
         }
         return redirect('/');
     }
