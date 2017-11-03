@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Product;
 use App\User;
-use App\Plandetail;
+use App\Salesentry;
 use App\Monthlylist;
 use App\Monthlyamount;
 use Illuminate\Http\Request;
@@ -92,6 +92,25 @@ class Controller extends BaseController
       $user->u_e_mail  = $request->u_e_mail;
       $user->u_type  = $request->u_type;
       $user->u_discount  = $request->u_discount;
+      $user->save();
+      return redirect('/user');
+    }
+
+    public function salesindex()
+    {
+      return view('salesentry');
+    }
+
+    public function storesales(Request $request)
+    {
+      $user = new Salesentry;
+      $user->se_product_id  = 1;//$request->se_product_id;
+      $user->se_user_id  = 1;//$request->se_user_id;
+      $user->se_quantity = $request->se_quantity;
+      $user->se_total_amt  = $request->se_total_amt;
+      $user->se_amt_given  = $request->se_amt_given;
+      $user->se_balance  = $request->se_balance;
+      $user->se_tax  = $request->se_tax;
       $user->save();
       return redirect('/user');
     }

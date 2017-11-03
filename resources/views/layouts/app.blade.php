@@ -220,16 +220,16 @@
         </style>
     </head>
     <body id="app-layout">
-        <nav class="navbar-default">
+        <!-- <nav class="navbar-default">
             <div class="container">
-                <div class="navbar-header">
+                <div class="navbar-header"> -->
                     <!--<div class="inner-nav" style="background-color: red;width: 200px;height: 50px;float: left;">-->
 <!--                        <div style="background-color: gray;width: 100px;height: 25px;float: left;"></div>
                         <div style="background-color: gray;border-left: solid #7386D5 10px;width: 110px;height: 25px;float: right;"></div>-->
                     <!--</div>-->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <!-- <a class="navbar-brand" href="{{ url('/') }}">
                         User List
-                    </a>
+                    </a> -->
                     <!--<div class="inner-nav" style="background-color: red;width: 200px;height: 50px;float: left; margin-left: 10%; "></div>-->
                     <!--
                     <a class="navbar-brand" href="{{ url('/plandetail') }}">
@@ -241,16 +241,16 @@
                     <a class="navbar-brand" href="{{ url('/monthlylistdetails') }}">
                         Month Details
                     </a>-->
-                    <a class="navbar-brand" href="{{ url('/importusers') }}">
+                    <!-- <a class="navbar-brand" href="{{ url('/importusers') }}">
                         Import
                     </a>
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         <div class="wrapper">
             <!-- Sidebar Holder -->
-            <nav id="sidebar">
+            <!-- <nav id="sidebar">
                 <ul class="list-unstyled components">
                     <li>
                         <a class="fa fa-users navbar-brand" href="{{ url('/') }}">
@@ -274,7 +274,7 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
         <span id="sidebarCollapse" style="font-size:30px;cursor:pointer">&#9776;</span>
         <!--<div style="width: 500px; height: 50px; background-color: green;display: flex;"></div>-->
             <!-- Page Content Holder -->

@@ -65,6 +65,12 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::delete('/user/{id}', 'Controller@destroyuser');
 
+    Route::get('/sales', 'Controller@salesindex');
+
+    Route::post('/sales', 'Controller@storesales');
+
+    Route::delete('/sales/{id}', 'Controller@destroysales');
+
     Route::get('/searchajax/{name}', 'Controller@searchproduct');
 
     Route::get('/monthlylistdetails', 'Controller@monthlylistdetails');
