@@ -9,9 +9,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Product;
 use App\User;
 use App\Salesentry;
-use App\Monthlylist;
+use App\Purchaseentry;
 use App\Monthlyamount;
 use Illuminate\Http\Request;
+Use PDF;
 
 class Controller extends BaseController
 {
@@ -52,10 +53,7 @@ class Controller extends BaseController
 
     public function productindex()
     {
-          // return view('product', [
-          //     'plandetail' => Plandetail::orderBy('created_at', 'asc')->get()
-          // ]);
-          return view('product');
+        return view('product');
     }
 
     public function storeproduct(Request $request)
@@ -98,7 +96,10 @@ class Controller extends BaseController
 
     public function salesindex()
     {
-      return view('salesentry');
+        $salesEntryDetails = Salesentry::orderBy('created_at', 'desc')->get();
+        return view('salesentry', compact('salesEntryDetails'));
+
+      // return view('salesentry');
     }
 
     public function storesales(Request $request)
@@ -112,7 +113,33 @@ class Controller extends BaseController
       $user->se_balance  = $request->se_balance;
       $user->se_tax  = $request->se_tax;
       $user->save();
-      return redirect('/user');
+      return redirect('/sales');
+    }
+
+    public function salesdetails()
+    {
+      // $planDetail = Plandetail::orderBy('created_at', 'asc')->get();
+        $monthlylist = Salesentry::orderBy('created_at', 'desc')->get();
+        return view('monthlylistdetail', compact('monthlylist'));
+    }
+
+    public function purchaseindex()
+    {
+      return view('purchaseentry');
+    }
+
+    public function storepurchase(Request $request)
+    {
+      $user = new Purchaseentry;
+      $user->pe_product_id  = 1;//$request->se_product_id;
+      $user->pe_user_id  = 1;//$request->se_user_id;
+      $user->pe_buy_price = $request->pe_buy_price;
+      $user->pe_sell_price  = $request->pe_sell_price;
+      $user->pe_quantity  = $request->pe_quantity;
+      // $user->pe_tax  = $request->pe_tax;
+      $user->pe_comments  = $request->pe_comments;
+      $user->save();
+      return redirect('/purchase');
     }
 
     public function searchproduct($name){
@@ -121,6 +148,13 @@ class Controller extends BaseController
       // return view('product', compact('products');
       // print_r($products);
       // exit;
+    }
+
+    public function pdfsales() {
+      $monthlylist = Salesentry::orderBy('created_at', 'desc')->get();
+      $pdf = PDF::loadView('pdfview');
+      // print_r($pdf);exit;
+      return $pdf->download('pdfview.pdf');
     }
 
     public function monthlylistindex()

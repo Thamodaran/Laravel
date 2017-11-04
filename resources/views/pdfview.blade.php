@@ -1,6 +1,9 @@
-@extends('layouts.app')
+<html>
+<head></head>
+<body>
+<!-- @extends('layouts.app') -->
 
-@section('content')
+<!-- @section('content') -->
     <div class="container">
         <!-- <div class="col-sm-12"> -->
       <div class="panel panel-default">
@@ -64,51 +67,8 @@
           </form>
         </div>
       </div>
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              Current Tasks
-              {{$salesEntryDetails}}
-          </div>
-          @if (count($salesEntryDetails) > 0)
-          <div class="panel-body">
-              <table class="table table-striped task-table">
-                  <thead>
-                      <th>Product Code</th>
-                      <th>Mobile Number</th>
-                      <th>Phone Number</th>
-                      <th>Address</th>
-                      <th>Plan</th>
-                      <th>Action</th>
-                  </thead>
-                  <tbody>
-
-                    @foreach ($salesEntryDetails as $salesEntry)
-                          <tr>
-                              <td class="table-text"><div>{{$salesEntry->se_product_id}}</div></td>
-                              <td class="table-text"><div>{{$salesEntry->se_user_id}}</div></td>
-                              <td class="table-text"><div>{{$salesEntry->se_quantity}}</div></td>
-                              <td class="table-text"><div>{{$salesEntry->se_total_amt}}</div></td>
-                              <td class="table-text"><div>{{$salesEntry->se_amt_given}}</div></td>
-
-                              <!-- Task Delete Button -->
-                              <td>
-                                  <form action="{{ url('planuser/') }}" method="POST">
-                                      {{ csrf_field() }}
-                                      {{ method_field('DELETE') }}
-
-                                      <button type="submit" class="btn btn-danger">
-                                          <i class="fa fa-btn fa-trash"></i>
-                                      </button>
-                                  </form>
-                              </td>
-                          </tr>
-                      @endforeach
-
-                  </tbody>
-              </table>
-          </div>
-          @endif
-      </div>
     </div>
+    </body>
     <!-- </div> -->
-@endsection
+<!-- @endsection -->
+</html>

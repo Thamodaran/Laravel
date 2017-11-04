@@ -73,13 +73,15 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/searchajax/{name}', 'Controller@searchproduct');
 
-    Route::get('/monthlylistdetails', 'Controller@monthlylistdetails');
+    Route::get('/purchase', 'Controller@purchaseindex');
 
-    Route::post('/monthamount', 'Controller@storemonthlyamount');
+    Route::post('/purchase', 'Controller@storepurchase');
+
+    Route::delete('/purchase/{id}', 'Controller@destroypurchase');
 
     Route::get('/importusers', 'Controller@importplanusers');
 
-    Route::post('/importusers', 'Controller@storeplanusers');
+    Route::get('/pdf', 'Controller@pdfsales');
 
     /**
      * Delete Task
