@@ -1,74 +1,143 @@
 <html>
-<head></head>
-<body>
-<!-- @extends('layouts.app') -->
-
-<!-- @section('content') -->
-    <div class="container">
-        <!-- <div class="col-sm-12"> -->
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              Sales Entry
-          </div>
-
-          <div class="panel-body">
-            <form action="{{ url('sales')}}" method="POST" class="form-horizontal">
-                {{ csrf_field() }}
-
-            <div class="col-sm-6">
-              <label for="pwd">Product Code:</label>
-              <input type="text" name="se_product_code" id="se_product_code" class="form-control" value="">
-              <input type="hidden" name="se_product_id" id="se_product_id" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Product Name:</label>
-              <input type="text" name="se_product_name" id="se_product_name" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Customer Name:</label>
-              <input type="text" name="se_customer_user" id="se_customer_user" class="form-control" value="">
-              <input type="hidden" name="se_user_id" id="se_user_id" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Sale Price:</label>
-              <input type="text" name="se_sell_price" id="se_sell_price" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Quantity:</label>
-              <input type="text" name="se_quantity" id="se_quantity" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Total Amount:</label>
-              <input type="text" name="se_total_amt" id="se_total_amt" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Amount Given:</label>
-              <input type="text" name="se_amt_given" id="se_amt_given" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Balance:</label>
-              <input type="text" name="se_balance" id="se_balance" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Customer Discount:</label>
-              <input type="text" name="se_user_discount" id="se_user_discount" class="form-control" value="">
-            </div>
-            <div class="col-sm-6">
-              <label for="pwd">Tax (%):</label>
-              <input type="text" name="se_tax" id="se_tax" class="form-control" value="">
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-6 col-sm-6">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-btn fa-plus"></i>Add Sales
-                    </button>
-                </div>
-            </div>
-          </form>
-        </div>
+<head>
+  <style>
+    .border-collapse {
+      border-collapse: collapse;
+    }
+    .logo-div-style {
+      width : 100px;
+      height : 100px;
+    }
+    .overall-table{
+      width : 690px;
+      /*height : 100px;*/
+      margin: auto;
+    }
+    .td-width-10per {
+      width : 10%;
+    }
+    .td-width-20per {
+      width : 20%;
+    }
+    .td-width-5per {
+      width : 5%;
+    }
+    .td-width-30per {
+      width : 30%;
+    }
+    .border-top-none {
+      border-top: none;
+    }
+    .border-bottom-none {
+      border-bottom: none;
+    }
+    .product-list-table {
+      text-align: center;
+    }
+    .text-align-right {
+      text-align: right;
+    }
+  </style>
+</head>
+<body><!-- <img src="/var/www/html/new-laravel/public/images/regnumbers.jpeg"> -->
+    <div style="border: 1px solid black;">
+      <div>
+        <!-- {{$salesentry}} -->
       </div>
-    </div>
-    </body>
-    <!-- </div> -->
-<!-- @endsection -->
+        <table border="1" class="border-collapse overall-table">
+          <tbody>
+            <tr>
+              <td colspan="2">From :</td>
+              <td></td>
+              <td></td>
+              <td colspan="2">To :</td>
+            </tr>
+            <tr>
+              <td colspan="6">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Name :</td>
+              <td>Thamu</td>
+              <td></td>
+              <td></td>
+              <td>Name :</td>
+              <td>Thamu</td>
+            </tr>
+            <tr>
+              <td>Address :</td>
+              <td>1/597, Vinayaga nager,</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>5th street</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Chennai</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <table border="1" class="border-collapse overall-table product-list-table">
+          <tbody>
+            <tr>
+              <td class="border-bottom-none td-width-5per"> S.No. </td>
+              <td class="border-bottom-none td-width-30per">DESCRIPTION</td>
+              <td class="border-bottom-none td-width-5per">HSN/</td>
+              <td class="border-bottom-none td-width-5per">GST</td>
+              <td class="border-bottom-none td-width-5per">QTY</td>
+              <td class="border-bottom-none td-width-5per">RATE</td>
+              <td colspan="2" class="td-width-10per">AMOUNT</td>
+              <!-- <td></td> -->
+            </tr>
+            <tr>
+              <td class="border-top-none"></td>
+              <td class="border-top-none"></td>
+              <td class="border-top-none">SAC</td>
+              <td class="border-top-none">RATE</td>
+              <td class="border-top-none"></td>
+              <td class="border-top-none"></td>
+              <td>Rs.</td>
+              <td>P</td>
+            </tr>
+            @foreach ($salesentry as $task)
+            <tr>
+              <td>1</td>
+              <td>Monitor</td>
+              <td>10</td>
+              <td>18</td>
+              <td>2</td>
+              <td>2500</td>
+              <td>5000</td>
+              <td>00</td>
+            </tr>
+            @endforeach
+
+            <tr>
+              <td colspan="5" class="text-align-right">TOTAL AMOUNT</td>
+              <td colspan="2"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="text-align-right" style="border-bottom: 2px dotted black;">Rupees</td>
+              <td colspan="7" style="border-bottom: 2px dotted black;"></td>
+            </tr>
+            <tr>
+              <td colspan="8" style="border-top: 2px dotted black;">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </body>
 </html>

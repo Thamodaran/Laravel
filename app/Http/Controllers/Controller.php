@@ -151,10 +151,14 @@ class Controller extends BaseController
     }
 
     public function pdfsales() {
-      $monthlylist = Salesentry::orderBy('created_at', 'desc')->get();
-      $pdf = PDF::loadView('pdfview');
+      $salesentry = Salesentry::orderBy('created_at', 'desc')->get();
+      $pdf = PDF::loadView('pdfview', compact('salesentry'));
       // print_r($pdf);exit;
-      return $pdf->download('pdfview.pdf');
+      // return $pdf->stream('pdfview.pdf');
+      // echo $html;
+      // return $pdf->download($html);
+      // return view('pdfview', compact('salesentry'));
+      return $pdf->stream('pdfview.pdf');
     }
 
     public function monthlylistindex()
