@@ -25,6 +25,21 @@
     .td-width-30per {
       width : 30%;
     }
+    .td-width-40per {
+      width : 40%;
+    }
+    .td-width-50per {
+      width : 50%;
+    }
+    .td-width-70per {
+      width : 70%;
+    }
+    .td-width-100per {
+      width : 100%;
+    }
+    .td-width-15per {
+      width : 15%;
+    }
     .border-top-none {
       border-top: none;
     }
@@ -37,14 +52,79 @@
     .text-align-right {
       text-align: right;
     }
+    .table {
+      display: table;
+      width: 100%;
+    }
+    .row {
+      display: table-row;
+    }
+    .col {
+      display: table-cell;
+      border: 1px solid black;
+    }
   </style>
 </head>
-<body><!-- <img src="/var/www/html/new-laravel/public/images/regnumbers.jpeg"> -->
-    <div style="border: 1px solid black;">
-      <div>
-        <!-- {{$salesentry}} -->
+<body><!-- <img border: 1px solid black; src="/var/www/html/new-laravel/public/images/regnumbers.jpeg"> -->
+    <div style="height: 940px;">
+      <div style="border: 1px solid black; height: 150px;"></div>
+      <div style="border: 1px solid black; height: 120px;margin-top:30px;"></div>
+      <div style="border: 1px solid black; width: 100%; height: 500px;margin-top:30px;" class="table">
+        <div class="row">
+          <div class="col">
+            <table border="1" style="width: 100%;border-collapse: collapse;border-right: none;border-left: none;">
+              <tr>
+                <td class="td-width-5per border-top-none border-bottom-none" style="border-left: none;">S.NO</td>
+                <td class="td-width-50per border-top-none border-bottom-none">DESCRIPTION</td>
+                <td class="td-width-10per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-5per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-5per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-10per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-15per border-top-none" colspan="2" style="border-right: none;">RATE</td>
+              </tr>
+              <tr>
+                <td class="td-width-5per border-top-none" style="border-left: none;"></td>
+                <td class="td-width-50per border-top-none"></td>
+                <td class="td-width-10per border-top-none"></td>
+                <td class="td-width-5per border-top-none"></td>
+                <td class="td-width-5per border-top-none"></td>
+                <td class="td-width-10per border-top-none"></td>
+                <td class="td-width-10per">RS</td>
+                <td class="td-width-5per" style="border-right: none;">P</td>
+              </tr>
+            </table>
+            <table border="0" style="width: 100%;border-collapse: collapse;border-right: none;border-left: none;">
+              @foreach ($salesentry as $task)
+              <tr>
+                <td class="td-width-6per border-top-none border-bottom-none" style="width: 5.5%; border-left: none;">1</td>
+                <td class="td-width-45per border-top-none border-bottom-none">DESCRIPTION</td>
+                <td class="td-width-10per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-5per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-5per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-10per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-10per border-top-none">500</td>
+                <td class="td-width-5per border-top-none" style="border-right: none;">00</td>
+              </tr>
+              @endforeach
+              <!-- <tr>
+                <td class="td-width-6per border-top-none border-bottom-none" style="border-left: none;">1</td>
+                <td class="td-width-45per border-top-none border-bottom-none">DESCRIPTION</td>
+                <td class="td-width-10per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-5per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-5per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-10per border-top-none border-bottom-none">S.NO</td>
+                <td class="td-width-10per border-top-none">600</td>
+                <td class="td-width-5per border-top-none" style="border-right: none;">00</td>
+              </tr> -->
+            </table>
+          </div>
+        </div>
       </div>
-        <table border="1" class="border-collapse overall-table">
+      <div style="border: 1px solid black; height: 76px;margin-top:30px;"></div>
+      <!-- <div> -->
+        <!-- {{$salesentry}} -->
+      <!-- </div> -->
+        <!-- <table border="1" class="border-collapse overall-table">
           <tbody>
             <tr>
               <td colspan="2">From :</td>
@@ -88,8 +168,8 @@
               <td></td>
             </tr>
           </tbody>
-        </table>
-        <table border="1" class="border-collapse overall-table product-list-table">
+        </table> -->
+        <!-- <table border="1" class="border-collapse overall-table product-list-table">
           <tbody>
             <tr>
               <td class="border-bottom-none td-width-5per"> S.No. </td>
@@ -99,7 +179,6 @@
               <td class="border-bottom-none td-width-5per">QTY</td>
               <td class="border-bottom-none td-width-5per">RATE</td>
               <td colspan="2" class="td-width-10per">AMOUNT</td>
-              <!-- <td></td> -->
             </tr>
             <tr>
               <td class="border-top-none"></td>
@@ -137,7 +216,7 @@
               <td colspan="8" style="border-top: 2px dotted black;">&nbsp;</td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
       </div>
   </body>
 </html>
