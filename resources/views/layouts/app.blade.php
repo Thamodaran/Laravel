@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <title>Laravel Quickstart - Basic</title>
          <!-- <script src="//netsh.pp.ua/upwork-demo/1/js/typeahead.js"></script> -->
