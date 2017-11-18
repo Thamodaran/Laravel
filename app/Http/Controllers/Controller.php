@@ -105,8 +105,8 @@ class Controller extends BaseController
     public function storesales(Request $request)
     {
       $user = new Salesentry;
-      $user->se_product_id  = 1;//$request->se_product_id;
-      $user->se_user_id  = 1;//$request->se_user_id;
+      $user->se_product_id  = $request->se_product_code;
+      $user->se_user_id  = $request->se_customer_user;
       $user->se_quantity = $request->se_quantity;
       $user->se_total_amt  = $request->se_total_amt;
       $user->se_amt_given  = $request->se_amt_given;
@@ -142,8 +142,11 @@ class Controller extends BaseController
       return redirect('/purchase');
     }
 
-    public function searchproduct($name){
+    public function searchproduct($term){
+      // print_($_GET['q']);exit;
+      print_($term);exit;
       $products = Product::where('p_product_name', 'LIKE', '%'.$name.'%')->get();
+      print_r($products);exit;
       return $products;
       // return view('product', compact('products');
       // print_r($products);

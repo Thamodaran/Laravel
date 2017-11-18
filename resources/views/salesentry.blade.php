@@ -3,6 +3,14 @@
 @section('content')
     <div class="container">
         <!-- <div class="col-sm-12"> -->
+    <!-- <div style="width:520px;margin:0px auto;margin-top:30px;height:500px;">
+
+  <h2>Select Box with Search Option Jquery Select2.js</h2> -->
+
+  <select class="itemName form-control" style="width:500px" name="itemName"></select>
+
+<!-- </div> -->
+
             <table class="table table-condensed table-striped table-hover">
                 <thead>
                     <th>Name</th>
@@ -35,14 +43,33 @@
             <div class="form-group row">
               <label for="pwd" class="col-sm-2 col-form-label">Product Code:</label>
               <div class="col-sm-4">
-                <input type="text" name="se_product_code" id="se_product_code" class="form-control" value="">
-                <input type="hidden" name="se_product_id" id="se_product_id" class="form-control" value="">
+                <select id="se_product_code" class="se_product_code form-control" value="" onchange="setProductDetails()" name="se_product_code"></select>
+                <!-- <input type="text" name="se_product_code" id="se_product_code" class="form-control" value="">
+                <input type="hidden" name="se_product_id" id="se_product_id" class="form-control" value=""> -->
               </div>
               <label for="pwd" class="col-sm-2 col-form-label">Product Name:</label>
               <div class="col-sm-4">
                 <input type="text" name="se_product_name" id="se_product_name" class="form-control" value="">
               </div>
             </div>
+            <script type="text/javascript">
+              var src = "/searchajax";
+                var name = $("#se_product_code").val();
+                  $('#se_product_code').select2({
+                    placeholder: 'Select an item',
+                    ajax: {
+                      url: src,
+                      dataType: 'json',
+                      delay: 250,
+                      processResults: function (data) {
+                        return {
+                          results: data
+                        };
+                      },
+                      cache: true
+                    }
+                  });
+            </script>
             <!-- <div class="form-group row">
               <label for="pwd" class="col-sm-2 col-form-label">Product Name:</label>
               <div class="col-sm-4">
@@ -52,14 +79,33 @@
             <div class="form-group row">
               <label for="pwd" class="col-sm-2 col-form-label">Customer Name:</label>
               <div class="col-sm-4">
-                <input type="text" name="se_customer_user" id="se_customer_user" class="form-control" value="">
-                <input type="hidden" name="se_user_id" id="se_user_id" class="form-control" value="">
+                <select id="se_customer_user" class="se_customer_user form-control" value="" name="se_customer_user"></select>
+                <!-- <input type="text" name="se_customer_user" id="se_customer_user" class="form-control" value="">
+                <input type="hidden" name="se_user_id" id="se_user_id" class="form-control" value=""> -->
               </div>
               <label for="pwd" class="col-sm-2 col-form-label">Sale Price:</label>
               <div class="col-sm-4">
                 <input type="text" name="se_sell_price" id="se_sell_price" class="form-control" value="">
               </div>
             </div>
+            <script type="text/javascript">
+              var src = "/searchajax";
+                var name = $("#se_customer_user").val();
+                  $('#se_customer_user').select2({
+                    placeholder: 'Select an item',
+                    ajax: {
+                      url: src,
+                      dataType: 'json',
+                      delay: 250,
+                      processResults: function (data) {
+                        return {
+                          results: data
+                        };
+                      },
+                      cache: true
+                    }
+                  });
+            </script>
             <!-- <div class="col-sm-6">
               <label for="pwd">Sale Price:</label>
               <input type="text" name="se_sell_price" id="se_sell_price" class="form-control" value="">
