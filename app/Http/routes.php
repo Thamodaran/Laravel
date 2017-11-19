@@ -14,6 +14,7 @@
 use App\Task;
 use Illuminate\Http\Request;
 use App\Product;
+use App\User;
 Route::group(['middleware' => ['web']], function () {
     /**
      * Show Task Dashboard
@@ -71,12 +72,20 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::delete('/sales/{id}', 'Controller@destroysales');
 
-    // Route::get('/searchajax/{term}', 'Controller@searchproduct');
+//    Route::get('/searchajax/{term}', 'Controller@searchproduct');
 
     Route::get('/searchajax', function(){
         $products = array();
         if(isset($_GET['term'])) {
             $products = Product::where('p_product_code', 'LIKE', '%'.$_GET['term'].'%')->select('*','p_id AS id','p_product_code AS text')->get();
+        }
+        return $products;
+    });
+    
+    Route::get('/searchcustomer', function(){
+        $products = array();
+        if(isset($_GET['term'])) {
+            $products = User::where('u_name', 'LIKE', '%'.$_GET['term'].'%')->where('u_type','1')->select('*','u_id AS id','u_name AS text')->get();
         }
         return $products;
     });

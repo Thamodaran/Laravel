@@ -1,0 +1,128 @@
+/* Shrinking the sidebar from 250px to 80px and center aligining its content*/
+/*
+    DEMO STYLE
+*/
+/*@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";*/
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #353F3E;
+    color: #FFFFFF;
+    transition: all 0.3s;
+}
+#sidebar.active {
+    margin-left: -250px;
+}
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+#sidebar ul.components {
+    padding: 20px 0;
+}
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+.navbar-header .navbar-brand{
+    color:  #c4ff33 !important;
+    font-weight: bold;
+    font-size: 30px;
+}
+#sidebar ul .navbar-brand{
+    color: #FFFFFF;
+    width: 100%;
+}
+a[data-toggle="collapse"] {
+    position: relative;
+}
+.navbar-default,.main-menu {
+    background-color: rgba(0, 139, 139, 0.9);
+}
+.width-2-per {
+    width: 2%;
+}
+.width-3-per {
+    width: 3%;
+}
+.width-5-per {
+    width: 5%;
+}
+.width-10-per {
+    width: 10%;
+}
+.width-15-per {
+    width: 15%;
+}
+.width-20-per {
+    width: 20%;
+}
+.width-25-per {
+    width: 25%;
+}
+.width-30-per {
+    width: 30%;
+}
+.width-35-per {
+    width: 35%;
+}
+.width-40-per {
+    width: 40%;
+}
+.width-45-per {
+    width: 45%;
+}
+.customer-table th {
+    /*background-color: rgba(0, 139, 139, 0.5);*/
+    color: #000000;
+    padding: 5px;
+}
+.customer-table td {
+    padding: 5px;
+}
+.customer-table tr:nth-child(odd) {
+    background-color: #eae8e5;
+    color: black;
+}
+.customer-table {    
+    border-collapse: collapse;
+    border-color: #ddd;
+    background-color: #f8f7f5;
+}
+.customer-table input {
+    width: 100%;
+}
+.action span{
+    display: inline-block;
+    margin: 2px;
+}
+.list-unstyled li {
+    padding: 5px 0 0 0 !important; 
+}
+.list-unstyled {
+   padding: 10px 0 0 30px !important; 
+}
