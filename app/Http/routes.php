@@ -72,6 +72,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::delete('/sales/{id}', 'Controller@destroysales');
 
+    Route::get('/import', 'Controller@importindex');
+
+    Route::post('/import', 'Controller@import');
+
 //    Route::get('/searchajax/{term}', 'Controller@searchproduct');
 
     Route::get('/searchajax', function(){

@@ -98,8 +98,11 @@ class Controller extends BaseController
     {
         $salesEntryDetails = Salesentry::orderBy('created_at', 'desc')->get();
         return view('salesentry', compact('salesEntryDetails'));
+    }
 
-      // return view('salesentry');
+    public function importindex()
+    {
+        return view('import');
     }
 
     public function storesales(Request $request)
@@ -271,28 +274,27 @@ class Controller extends BaseController
         return redirect('/monthlylist');
     }
 
-    public function importplanusers()
+    public function import(Request $request)
     {
-        return view('importuser');
-    }
-
-    public function storeplanusers(Request $request)
-    {
-        $file = fopen($_FILES['file']['tmp_name'],"r");
-        $line_of_text = array();
-        while (!feof($file) ) {
-            $line_of_text[] = fgetcsv($file);
-        }
-        unset($line_of_text[0]);    // Remove header from the CSV file
-        array_pop($line_of_text);    // Remove last row from the CSV file
-        foreach ($line_of_text as $key => $line) {
-          $planUser = new Planuser;
-          $planUser->name = $line[0];
-          $planUser->mobile_number = $line[1];
-          $planUser->ph_number = $line[2];
-          $planUser->address = $line[3];
-          $planUser->plan_id = $line[4];
-          $planUser->save();
+        if ($_FILES['user_file']['error'] !== 4) {
+          $file = fopen($_FILES['user_file']['tmp_name'],"r");
+          $line_of_text = array();
+          while (!feof($file) ) {
+              $line_of_text[] = fgetcsv($file);
+          }
+          unset($line_of_text[0]);    // Remove header from the CSV file
+          array_pop($line_of_text);    // Remove last row from the CSV file
+          foreach ($line_of_text as $key => $line) {
+            $user = new User;
+            $user->u_name  = $line[0];
+            $user->u_address  = $line[1];
+            $user->u_mob_number = $line[2];
+            $user->u_ph_number  = $line[3];
+            $user->u_e_mail  = $line[4];
+            $user->u_type  = $line[5];
+            $user->u_discount  = $line[6];
+            $user->save();
+          }
         }
         return redirect('/');
     }

@@ -30,18 +30,18 @@
         <!-- <nav class="navbar navbar-inverse navbar-fixed-top">  -->
          <nav class="navbar-default">
             <div class="container-fluid" style="margin-left: 0px;padding: 20px 0 0 0;">
-                <div class="navbar-header"> 
+                <div class="navbar-header">
                      <a class="navbar-brand" href="{{ url('/') }}">
-                        I-FIX Billing Software
-                    </a> 
+                        
+                    </a>
                 </div>
                 <!--<marquee><span>This is billing software by Thamodaran K..!</span></marquee>-->
             </div>
-        </nav> 
+        </nav>
         <div style="height: 35px; width:100%;"></div>
         <div style="height: 400px; width:150px; border: 1px solid #ddd; box-shadow: 0 1px 1px rgba(0,0,0,.05); float: left;">
             <div class="main-menu panel-heading" style="width:100%; color: white; font-weight: bold; font-size: 20px;">
-                Main Menu                
+                Main Menu
             </div>
             <div>
                 <ul class="list-unstyled components">
@@ -71,14 +71,14 @@
         <div class="wrapper">
 <!--             <nav id="sidebar">
 -->                <!--
-            </nav>--> 
+            </nav>-->
         <!--<span id="sidebarCollapse" style="font-size:30px;cursor:pointer">&#9776;</span>-->
             @yield('content')
         </div>
         <!-- jQuery CDN -->
         <!--<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>-->
         <!-- Bootstrap Js CDN -->
-        
+
         <!-- JavaScripts -->
 <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
