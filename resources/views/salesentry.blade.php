@@ -19,11 +19,11 @@
                     </tr>
                     <tr>
                        <td>
-                            <select style="width: 100%;" id="se_customer_user" class="se_customer_user" value="" name="se_customer_user"></select>
+                            <select style="width: 100%;" id="se_customer_user" class="se_customer_user" onchange="setUserDetails(this)" value="" name="se_customer_user"></select>
                         </td>
-                        <td><input type="text" name="se_user_discount" id="se_user_discount" class="" value=""></td>                        
-                        <td><input type="textarea" name="se_user_discount" id="se_user_discount" class="" value=""></td>                        
-                    </tr>                    
+                        <td><input type="text" name="se_user_discount" id="se_user_discount" class="" value=""></td>
+                        <td><input type="textarea" name="se_user_address" id="se_user_address" class="" value=""></td>
+                    </tr>
                 </table>
                 <div style="height: 35px;width: 100%;"></div>
                 <table id="detail-table" border="1"  style="width: 100%; border-bottom: 0px;" class="customer-table">
@@ -33,13 +33,13 @@
                         <th class="width-10-per">Product Code</th>
                         <th class="width-20-per">Product Name</th>
                         <th class="width-5-per">HSN/SAC Code</th>
-                        <th class="width-5-per">Quantity</th>                        
+                        <th class="width-5-per">Quantity</th>
                         <th class="width-10-per">Sale Price</th>
-                        <th class="width-10-per">Discount(%)</th>                        
+                        <th class="width-10-per">Discount(%)</th>
                         <th class="width-5-per">CGST (%)</th>
                         <th class="width-5-per">CGST Amt</th>
                         <th class="width-5-per">SGST (%)</th>
-                        <th class="width-5-per">SGST Amt</th>                        
+                        <th class="width-5-per">SGST Amt</th>
                         <th class="width-10-per">Amount</th>
                         <th class="width-5-per">Action</th>
                     </tr>
@@ -47,14 +47,14 @@
                         <td>1</td>
                         <td><select style="width: 100%;" id="se_product_code" class="se_product_code" value="" onchange="setProductDetails()" name="se_product_code"></select></td>
                         <td><input type="text" name="se_product_name" id="se_product_name" class="" value=""></td>
-                        <td><input type="text" value="" class=""></td>
-                        <td><input type="text" name="se_quantity" id="se_quantity" class="" value=""></td>
+                        <td><input type="text" id="se_hsn_code" value="" class=""></td>
+                        <td><input type="text" name="se_quantity" onkeyup="calculateAmount()" id="se_quantity" class="" value=""></td>
                         <td><input type="text" name="se_sell_price" id="se_sell_price" class="" value=""></td>
-                        <td><input type="text" value="" class=""></td>
+                        <td><input type="text" id="se_discount" value="" class=""></td>
                         <td><input type="text" name="se_tax_cgst" id="se_tax" class="" value=""></td>
                         <td><input type="text" name="se_tax_cgst_amt" id="se_tax" class="" value=""></td>
                         <td><input type="text" name="se_tax_sgst" id="se_tax" class="" value=""></td>
-                        <td><input type="text" name="se_tax_sgst_amt" id="se_tax" class="" value=""></td>                        
+                        <td><input type="text" name="se_tax_sgst_amt" id="se_tax" class="" value=""></td>
                         <td><input type="text" name="se_total_amt" id="se_total_amt" class="" value=""></td>
                         <td class="action">
                             <span id="add_more_3" style="color: green;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span>

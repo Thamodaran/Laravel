@@ -64,6 +64,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/user', 'Controller@storeuser');
 
+    Route::get('/user/{id}', 'Controller@showuser');
+
     Route::delete('/user/{id}', 'Controller@destroyuser');
 
     Route::get('/sales', 'Controller@salesindex');

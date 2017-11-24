@@ -126,6 +126,12 @@ class Controller extends BaseController
         return view('monthlylistdetail', compact('monthlylist'));
     }
 
+    public function showuser($id)
+    {
+        $userDetail = User::where('u_id', '=', $id)->first();
+        return $userDetail;
+    }
+
     public function purchaseindex()
     {
       return view('purchaseentry');
