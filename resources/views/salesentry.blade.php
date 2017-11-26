@@ -19,10 +19,10 @@
                     </tr>
                     <tr>
                        <td>
-                            <select style="width: 100%;" id="se_customer_user" class="se_customer_user" onchange="setUserDetails(this)" value="" name="se_customer_user"></select>
+                            <select tabindex="1" style="width: 100%;" id="se_customer_user" class="se_customer_user" onchange="setUserDetails(this)" value="" name="se_customer_user"></select>
                         </td>
-                        <td><input type="text" name="se_user_discount" id="se_user_discount" class="" value=""></td>
-                        <td><input type="textarea" name="se_user_address" id="se_user_address" class="" value=""></td>
+                        <td><input tabindex="2" type="text" name="se_user_discount" id="se_user_discount" class="" value=""></td>
+                        <td><input tabindex="3" type="textarea" name="se_user_address" id="se_user_address" class="" value=""></td>
                     </tr>
                 </table>
                 <div style="height: 35px;width: 100%;"></div>
@@ -43,22 +43,22 @@
                         <th class="width-10-per">Amount</th>
                         <th class="width-5-per">Action</th>
                     </tr>
-                    <tr id="new-row-3">
+                    <tr id="new-row-2">
                         <td>1</td>
-                        <td><select style="width: 100%;" id="se_product_code" class="se_product_code" value="" onchange="setProductDetails()" name="se_product_code"></select></td>
-                        <td><input type="text" name="se_product_name" id="se_product_name" class="" value=""></td>
-                        <td><input type="text" id="se_hsn_code" value="" class=""></td>
-                        <td><input type="text" name="se_quantity" onkeyup="calculateAmount()" id="se_quantity" class="" value=""></td>
-                        <td><input type="text" name="se_sell_price" id="se_sell_price" class="" value=""></td>
-                        <td><input type="text" id="se_discount" value="" class=""></td>
-                        <td><input type="text" name="se_tax_cgst" id="se_tax" class="" value=""></td>
-                        <td><input type="text" name="se_tax_cgst_amt" id="se_tax" class="" value=""></td>
-                        <td><input type="text" name="se_tax_sgst" id="se_tax" class="" value=""></td>
-                        <td><input type="text" name="se_tax_sgst_amt" id="se_tax" class="" value=""></td>
-                        <td><input type="text" name="se_total_amt" id="se_total_amt" class="" value=""></td>
+                        <td><select tabindex="4" style="width: 100%;" id="se_product_code" class="se_product_code" value="" onchange="setProductDetails()" name="se_product_code"></select></td>
+                        <td><input tabindex="5" type="text" name="se_product_name" id="se_product_name" class="" value=""></td>
+                        <td><input tabindex="6" type="text" id="se_hsn_code" value="" class=""></td>
+                        <td><input tabindex="7" type="text" name="se_quantity" onkeyup="calculateAmount()" id="se_quantity" class="" value=""></td>
+                        <td><input tabindex="8" type="text" name="se_sell_price" id="se_sell_price" class="" value=""></td>
+                        <td><input tabindex="9" type="text" id="se_discount" value="" class=""></td>
+                        <td><input tabindex="10" type="text" name="se_tax_cgst" id="se_tax" class="" value=""></td>
+                        <td><input tabindex="11" type="text" name="se_tax_cgst_amt" id="se_tax" class="" value=""></td>
+                        <td><input tabindex="12" type="text" name="se_tax_sgst" id="se_tax" class="" value=""></td>
+                        <td><input tabindex="13" type="text" name="se_tax_sgst_amt" id="se_tax" class="" value=""></td>
+                        <td><input tabindex="14" type="text" name="se_total_amt" id="se_total_amt" class="" value=""></td>
                         <td class="action">
-                            <span id="add_more_3" style="color: green;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                            <span id="123" style="color: red;" onclick="deleteRow(this)"><i class="fa fa-times" aria-hidden="true"></i></span>
+                            <span  tabindex="15" id="add_more_3" style="color: green;display:none;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                            <span  tabindex="16" id="123" style="color: red;" onclick="deleteRow(this)"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </td>
                     </tr>
                     </table>
