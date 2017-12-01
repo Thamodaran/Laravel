@@ -20,11 +20,8 @@ class Controller extends BaseController
 
     public function index()
     {
-      // $planDetail = Plandetail::orderBy('created_at', 'asc')->get();
-      // $tasks = Planuser::orderBy('created_at', 'asc')->get();
       $planDetail = array('test');
       $tasks = array();
-      // return view('tasks', compact('tasks','planDetail'));
       return view('purchase');
     }
 
@@ -40,14 +37,12 @@ class Controller extends BaseController
       $planUser->address = $request->address;
       $planUser->plan_id = $request->plantype;
       $planUser->save();
-
       return redirect('/');
     }
 
     public function destroy($id)
     {
       Planuser::findOrFail($id)->delete();
-
       return redirect('/');
     }
 
@@ -59,10 +54,13 @@ class Controller extends BaseController
     public function storeproduct(Request $request)
     {
       $product = new Product;
-      $product->p_product_name  = $request->p_product_name;
-      $product->p_product_code  = $request->p_product_code;
-      $product->p_product_model = $request->p_product_model;
-      $product->p_tax           = $request->p_tax;
+      die;
+      $product->p_product_name    = $request->p_product_name;
+      $product->p_product_code    = $request->p_product_code;
+      $product->p_product_model   = $request->p_product_model;
+      $product->p_hsn_sac_code    = $request->p_hsn_sac_code;
+      $product->p_cgst_percentage = $request->p_cgst_percentage;
+      $product->p_sgst_percentage = $request->p_sgst_percentage;
       // $product->p_image         = $request->p_image;
       $product->save();
       return redirect('/product');
@@ -107,15 +105,16 @@ class Controller extends BaseController
 
     public function storesales(Request $request)
     {
-      $user = new Salesentry;
-      $user->se_product_id  = $request->se_product_code;
-      $user->se_user_id  = $request->se_customer_user;
-      $user->se_quantity = $request->se_quantity;
-      $user->se_total_amt  = $request->se_total_amt;
-      $user->se_amt_given  = $request->se_amt_given;
-      $user->se_balance  = $request->se_balance;
-      $user->se_tax  = $request->se_tax;
-      $user->save();
+      $salesEntry = new Salesentry;
+      $salesEntry->se_product_id  = $request->se_product_code;
+      $salesEntry->se_user_id  = $request->se_customer_user;
+      $salesEntry->se_quantity = $request->se_quantity;
+      $salesEntry->se_amt_given  = $request->se_amt_given;
+      $salesEntry->se_balance  = $request->se_balance;
+      $salesEntry->se_cgst_amount  = $request->se_cgst_amount;
+      $salesEntry->se_sgst_amount  = $request->se_sgst_amount;
+      $salesEntry->se_total_amt  = $request->se_total_amt;
+      $salesEntry->save();
       return redirect('/sales');
     }
 

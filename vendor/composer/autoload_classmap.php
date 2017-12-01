@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddAdditionalColInSalesentries' => $baseDir . '/database/migrations/2017_11_27_042046_add_additional_col_in_salesentries.php',
+    'AddAdditionalCollumnInProducts' => $baseDir . '/database/migrations/2017_11_27_035813_add_additional_collumn_in_products.php',
     'AddAdditionalCollumnProducts' => $baseDir . '/database/migrations/2017_11_13_093628_add_additional_collumn_products.php',
     'AddCollumnsInPurchaseEntry' => $baseDir . '/database/migrations/2017_11_07_133728_add_collumns_in_purchaseEntry.php',
     'AddCollumnsInSalesEntry' => $baseDir . '/database/migrations/2017_11_07_133707_add_collumns_in_salesEntry.php',

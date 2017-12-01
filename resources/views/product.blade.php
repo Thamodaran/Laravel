@@ -25,8 +25,16 @@
               <input type="text" name="p_product_model" id="p_product_model" class="form-control" value="">
             </div>
             <div class="col-sm-6">
-              <label for="pwd">Tax:</label>
-              <input type="text" name="p_tax" id="p_tax" class="form-control" value="">
+              <label for="pwd">HSN/SAC Code:</label>
+              <input type="text" name="p_hsn_sac_code" id="p_hsn_sac_code" class="form-control" value="">
+            </div>
+            <div class="col-sm-6">
+              <label for="pwd">CGST (%):</label>
+              <input type="text" name="p_cgst_percentage" id="p_cgst_percentage" class="form-control" value="">
+            </div>
+            <div class="col-sm-6">
+              <label for="pwd">SGST (%):</label>
+              <input type="text" name="p_sgst_percentage" id="p_sgst_percentage" class="form-control" value="">
             </div>
             <!-- <div class="col-sm-6">
               <label for="pwd">Image:</label>

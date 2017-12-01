@@ -8,7 +8,8 @@
         </div>
 
         <div class="panel-body">
-            <form action="{{ url('sales')}}" method="POST" class="form-horizontal">
+            <!-- <form action="{{ url('sales')}}" method="POST" class="form-horizontal"> -->
+            <form action="" method="" class="form-horizontal">
                 {{ csrf_field() }}
                 <table border="1" style="width: 100%;" class="customer-table">
                     <tr><th colspan="3">Customer Details</th></tr>
@@ -43,19 +44,19 @@
                         <th class="width-10-per">Amount</th>
                         <th class="width-5-per">Action</th>
                     </tr>
-                    <tr id="new-row-2">
+                    <tr id="new-row-0" class="newRow_0">
                         <td>1</td>
-                        <td><select tabindex="4" style="width: 100%;" id="se_product_code" class="se_product_code" value="" onchange="setProductDetails()" name="se_product_code"></select></td>
-                        <td><input tabindex="5" type="text" name="se_product_name" id="se_product_name" class="" value=""></td>
-                        <td><input tabindex="6" type="text" id="se_hsn_code" value="" class=""></td>
-                        <td><input tabindex="7" type="text" name="se_quantity" onkeyup="calculateAmount()" id="se_quantity" class="" value=""></td>
-                        <td><input tabindex="8" type="text" name="se_sell_price" id="se_sell_price" class="" value=""></td>
-                        <td><input tabindex="9" type="text" id="se_discount" value="" class=""></td>
-                        <td><input tabindex="10" type="text" name="se_tax_cgst" id="se_tax" class="" value=""></td>
-                        <td><input tabindex="11" type="text" name="se_tax_cgst_amt" id="se_tax" class="" value=""></td>
-                        <td><input tabindex="12" type="text" name="se_tax_sgst" id="se_tax" class="" value=""></td>
-                        <td><input tabindex="13" type="text" name="se_tax_sgst_amt" id="se_tax" class="" value=""></td>
-                        <td><input tabindex="14" type="text" name="se_total_amt" id="se_total_amt" class="" value=""></td>
+                        <td><select tabindex="4" style="width: 100%;" id="se_product_code_0" class="se_entry_0" value="" onchange="setProductDetails()" name="se_product_code"></select></td>
+                        <td><input tabindex="5" type="text" name="se_product_name" id="se_product_name_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="6" type="text" name="se_hsn_code" id="se_hsn_code_0" value="" class="se_entry_0"></td>
+                        <td><input tabindex="7" type="text" name="se_quantity" onkeyup="calculateAmount()" id="se_quantity_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="8" type="text" name="se_sell_price" id="se_sell_price_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="9" type="text" name="se_discount" id="se_discount_0" value="" class="se_entry_0"></td>
+                        <td><input tabindex="10" type="text" name="p_tax_cgst" id="p_tax_cgst_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="11" type="text" name="se_cgst_amount" id="se_cgst_amount_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="12" type="text" name="p_tax_sgst" id="p_tax_sgst_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="13" type="text" name="se_sgst_amount" id="se_sgst_amount_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="14" type="text" name="se_total_amt" id="se_total_amt_0" class="se_entry_0" value=""></td>
                         <td class="action">
                             <span  tabindex="15" id="add_more_3" style="color: green;display:none;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             <span  tabindex="16" id="123" style="color: red;" onclick="deleteRow(this)"><i class="fa fa-times" aria-hidden="true"></i></span>
@@ -77,7 +78,6 @@
                         <th class="width-5-per" style="text-align: right;">Total</th>
                         <td class="width-10-per">15222</td>
                         <td class="width-5-per"></td>
-
                     </tr>
                     <tr>
                         <th colspan="11" style="text-align: right;">Total Tax (%)</th>
@@ -97,24 +97,11 @@
                     </tr>
                 </table>
                 <div style="height: 35px;width: 100%;"></div>
-                <table>
-
-                </table>
-<!--                <div class="form-group row">
-                    <label for="pwd" class="col-sm-2 col-form-label">Product Code:</label>
-                    <div class="col-sm-4">
-                        <select id="se_product_code" class="se_product_code form-control" value="" onchange="setProductDetails()" name="se_product_code"></select>
-                    </div>
-                    <label for="pwd" class="col-sm-2 col-form-label">Product Name:</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="se_product_name" id="se_product_name" class="form-control" value="">
-                    </div>
-                </div>-->
                 <script type="text/javascript">
                     console.log();
                     var src = "/searchajax";
-                    var name = $("#se_product_code").val();
-                    $('#se_product_code').select2({
+                    var name = $("#se_product_code_0").val();
+                    $('#se_product_code_0').select2({
                         placeholder: 'Select an item',
                         ajax: {
                             url: src,
@@ -129,16 +116,6 @@
                         }
                     });
                 </script>
-<!--                <div class="form-group row">
-                    <label for="pwd" class="col-sm-2 col-form-label">Customer Name:</label>
-                    <div class="col-sm-4">
-                        <select id="se_customer_user" class="se_customer_user form-control" value="" name="se_customer_user"></select>
-                    </div>
-                    <label for="pwd" class="col-sm-2 col-form-label">Sale Price:</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="se_sell_price" id="se_sell_price" class="form-control" value="">
-                    </div>
-                </div>-->
                 <script type="text/javascript">
                     var src = "/searchcustomer";
                     var name = $("#se_customer_user").val();
@@ -157,28 +134,14 @@
                         }
                     });
                 </script>
-<!--                <div class="form-group row">
-                    <label for="pwd" class="col-sm-2 col-form-label">Amount Given:</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="se_amt_given" id="se_amt_given" class="form-control" value="">
-                    </div>
-                    <label for="pwd" class="col-sm-2 col-form-label">Balance:</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="se_balance" id="se_balance" class="form-control" value="">
-                    </div>
-                </div>-->
-<!--                <div class="form-group row">
-
-                    <label for="pwd" class="col-sm-2 col-form-label">Tax (%):</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="se_tax" id="se_tax" class="form-control" value="">
-                    </div>
-                </div>-->
                 <div class="form-group">
                     <div class="col-sm-offset-6 col-sm-6">
-                        <button type="submit" class="btn btn-default">
-                            <i class="fa fa-btn fa-plus"></i>Add Sales
-                        </button>
+                        <!-- <button type="" class="btn btn-default" onclick="saveSalesEntry()" id="">
+                            <i class="fa fa-btn fa-plus" onclick="saveSalesEntry()"></i>Add Sales
+                        </button> -->
+                        <span class="btn btn-default" onclick="saveSalesEntry()" id="">
+                            <i class="fa fa-btn fa-plus" onclick="saveSalesEntry()"></i>Add Sales
+                        </span>
                     </div>
                 </div>
             </form>
