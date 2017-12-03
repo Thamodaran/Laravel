@@ -15,6 +15,7 @@ use App\Task;
 use Illuminate\Http\Request;
 use App\Product;
 use App\User;
+use App\Salesentry;
 Route::group(['middleware' => ['web']], function () {
     /**
      * Show Task Dashboard
@@ -70,7 +71,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/sales', 'Controller@salesindex');
 
-    Route::post('/sales', 'Controller@storesales');
+//    Route::post('/sales', 'Controller@storesales');
 
     Route::delete('/sales/{id}', 'Controller@destroysales');
 
@@ -78,14 +79,39 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/import', 'Controller@import');
 
-//    Route::get('/searchajax/{term}', 'Controller@searchproduct');
-
     Route::get('/searchajax', function(){
         $products = array();
         if(isset($_GET['term'])) {
             $products = Product::where('p_product_code', 'LIKE', '%'.$_GET['term'].'%')->select('*','p_id AS id','p_product_code AS text')->get();
         }
         return $products;
+    });
+    Route::post('/sales', function(){
+        $endValues = array();
+//        print"<pre>";print_r($_POST['se_customer_user']);
+//        print"<pre>";print_r($_POST['se_customer_user']);exit;
+        foreach ($_POST as $key => $sale) {
+            $splitArr = explode('_', $key);
+            $endVal = end($splitArr);
+            if($endVal >= 0) {
+                $endValues[$endVal][$key] = $sale;
+            }
+        }
+        foreach ($endValues as $key => $endValue) {
+            if(is_numeric($key)){
+                $salesEntry = new Salesentry;
+                $salesEntry->se_product_id  = $endValue['se_product_code_'.$key.''];
+                $salesEntry->se_user_id  = $_POST['se_customer_user'];//$request->get('se_customer_user');
+                $salesEntry->se_quantity = $endValue['se_quantity_'.$key.''];
+                $salesEntry->se_amt_given  = 5000;//$endValue['se_amt_given_'.$key.''];
+                $salesEntry->se_balance  = 200;//$request->get('se_balance');
+                $salesEntry->se_cgst_amount  = $endValue['se_tax_cgst_amt_'.$key.''];
+                $salesEntry->se_sgst_amount  = $endValue['se_tax_sgst_amt_'.$key.''];
+                $salesEntry->se_total_amt  = $endValue['se_total_amt_'.$key.''];
+                $salesEntry->save();
+            }
+        }
+      return redirect('/sales');
     });
     
     Route::get('/searchcustomer', function(){
@@ -105,6 +131,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/importusers', 'Controller@importplanusers');
 
     Route::get('/pdf', 'Controller@pdfsales');
+    
+    Route::post('/order', 'Controller@storeOrder');
 
     /**
      * Delete Task
@@ -114,6 +142,4 @@ Route::group(['middleware' => ['web']], function () {
 
         return redirect('/');
     });
-
-
 });

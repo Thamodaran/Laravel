@@ -79,33 +79,56 @@ function selectLoad (id) {
         }
     });
 }
-function saveSalesEntry (e) {
-  console.log(e);
-  var salesArray = [];
-
-  // return false;
-    $("tr[id^='new-row-']").each(function(index, element){
-      var sale = {};
-      sale._token = $("input[name = '_token']");
-      sale.productCode = $("#se_product_code_"+index).select2("val");
-      sale.quantity = $("#se_quantity_"+index).val();
-      sale.se_sgst_amount = $("#se_tax_sgst_amt_"+index).val();
-      sale.se_cgst_amount = $("#se_tax_cgst_amt_"+index).val();
-      salesArray.push(sale);
-    });
-    console.log(salesArray);
+function saveSalesEntry () {
+////  console.log(e);
+//  var salesArray = [];
+//
+//  // return false;
+//    $("tr[id^='new-row-']").each(function(index, element){
+//      var sale = {};
+//      sale._token = $("input[name = '_token']").val();
+//      sale.productCode = $("#se_product_code_"+index).select2("val");
+//      sale.quantity = $("#se_quantity_"+index).val();
+//      sale.se_sgst_amount = $("#se_tax_sgst_amt_"+index).val();
+//      sale.se_cgst_amount = $("#se_tax_cgst_amt_"+index).val();
+//      salesArray.push(sale);
+//    });
     var url = '/sales';
     $.ajax({
       type: "POST",
         url: url,
-        contentType: "application/x-www-form-urlencoded",
+//        contentType: "application/x-www-form-urlencoded",
         // method: POST,
-        data: salesArray
+//        data: salesArray
       });
 }
-// $("#sales_submit").submit(function () {
-//   console.log('testtst');
-//     $("input[id^='new-row-']").each(function(index, element){
-//       console.log(element);
-//     });
-// });
+function printBill() {
+    orderEntry();
+    window.open('/pdf', '_blank');
+//    var userId = $("#se_customer_user").val();
+//    var amountGiven = $("#se_amt_given").val();
+////console.log($("#se_customer_user").val());
+//    var url = '/pdf';
+//    $.ajax({
+//        type: "POST",
+//        url: url,
+//        contentType: "application/x-www-form-urlencoded",
+////        data: {_token:$("input[name = '_token']").val(),userId:userId},
+//        data: {_token:$("#token").val(),userId:userId,amountGiven:amountGiven},
+////        _token : $("input[name = '_token']").val()
+//      });
+}
+function orderEntry() {
+    var userId = $("#se_customer_user").val();
+    var amountGiven = $("#se_amt_given").val();
+//console.log($("#se_customer_user").val());
+    var url = '/order';
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/x-www-form-urlencoded",
+//        data: {_token:$("input[name = '_token']").val(),userId:userId},
+        data: {_token:$("#token").val(),userId:userId,amountGiven:amountGiven},
+//        _token : $("input[name = '_token']").val()
+      });
+}

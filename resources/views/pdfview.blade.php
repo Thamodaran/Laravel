@@ -81,7 +81,7 @@
                     <tr>
                         <td style="width: 70px;font-weight: bold;">&nbsp;&nbsp;GSTIN</td>
                         <td>:</td>
-                        <td style="width: 150px;font-weight: bold;" class="text-align-right">33DBDPS4543F1ZQ</td>
+                        <td style="width: 150px;font-weight: bold;" class="text-align-right">33AXSPD8003C1ZM</td>
                         <td style="width: 465px;" class="text-align-right">&nbsp;</td>
                     </tr>
                     <tr>
@@ -97,7 +97,7 @@
                         <td colspan="4" class="text-align-center" style="font-size: 14px;font-weight: bold;">PERUNGUDI, CHENNAI - 600096.</td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-align-center" style="font-size: 12px;font-weight: bold;font-style: italic;">Tel : (+91) - 9444602602 / (+91) – 9840998484 &nbsp;&nbsp;&nbsp;email : ifixcomputers14@gmail.com</td>
+                        <td colspan="4" class="text-align-center" style="font-size: 12px;font-weight: bold;font-style: italic;">Tel : 04465554546 &nbsp;&nbsp;&nbsp;email : ifixcomputers14@gmail.com &nbsp;&nbsp;&nbsp;Website : ifixcomputers.co.in</td>
                     </tr>
                 </table>
 

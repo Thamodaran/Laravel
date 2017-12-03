@@ -8,9 +8,9 @@
         </div>
 
         <div class="panel-body">
-            <!-- <form action="{{ url('sales')}}" method="POST" class="form-horizontal"> -->
-            <form action="" method="" class="form-horizontal">
-                {{ csrf_field() }}
+             <form action="{{ url('sales')}}" method="POST" class="form-horizontal"> 
+            <!--<form action="" method="" class="form-horizontal">-->
+                {{csrf_field()}}
                 <table border="1" style="width: 100%;" class="customer-table">
                     <tr><th colspan="3">Customer Details</th></tr>
                     <tr>
@@ -19,7 +19,8 @@
                         <th>Address:</th>
                     </tr>
                     <tr>
-                       <td>
+                        <td>
+                            <input type="hidden" id="token" value="{{csrf_token()}}">
                             <select tabindex="1" style="width: 100%;" id="se_customer_user" class="se_customer_user" onchange="setUserDetails(this)" value="" name="se_customer_user"></select>
                         </td>
                         <td><input tabindex="2" type="text" name="se_user_discount" id="se_user_discount" class="" value=""></td>
@@ -46,17 +47,17 @@
                     </tr>
                     <tr id="new-row-0" class="newRow_0">
                         <td>1</td>
-                        <td><select tabindex="4" style="width: 100%;" id="se_product_code_0" class="se_entry_0" value="" onchange="setProductDetails()" name="se_product_code"></select></td>
-                        <td><input tabindex="5" type="text" name="se_product_name" id="se_product_name_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="6" type="text" name="se_hsn_code" id="se_hsn_code_0" value="" class="se_entry_0"></td>
-                        <td><input tabindex="7" type="text" name="se_quantity" onkeyup="calculateAmount()" id="se_quantity_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="8" type="text" name="se_sell_price" id="se_sell_price_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="9" type="text" name="se_discount" id="se_discount_0" value="" class="se_entry_0"></td>
-                        <td><input tabindex="10" type="text" name="p_tax_cgst" id="p_tax_cgst_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="11" type="text" name="se_cgst_amount" id="se_cgst_amount_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="12" type="text" name="p_tax_sgst" id="p_tax_sgst_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="13" type="text" name="se_sgst_amount" id="se_sgst_amount_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="14" type="text" name="se_total_amt" id="se_total_amt_0" class="se_entry_0" value=""></td>
+                        <td><select tabindex="4" style="width: 100%;" id="se_product_code_0" class="se_entry_0" value="" onchange="setProductDetails()" name="se_product_code_0"></select></td>
+                        <td><input tabindex="5" type="text" name="se_product_name_0" id="se_product_name_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="6" type="text" name="se_hsn_code_0" id="se_hsn_code_0" value="" class="se_entry_0"></td>
+                        <td><input tabindex="7" type="text" name="se_quantity_0" onkeyup="calculateAmount()" id="se_quantity_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="8" type="text" name="se_sell_price_0" id="se_sell_price_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="9" type="text" name="se_discount_0" id="se_discount_0" value="" class="se_entry_0"></td>
+                        <td><input tabindex="10" type="text" name="p_tax_cgst_0" id="p_tax_cgst_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="11" type="text" name="se_tax_cgst_amt_0" id="se_cgst_amount_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="12" type="text" name="p_tax_sgst_0" id="p_tax_sgst_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="13" type="text" name="se_tax_sgst_amt_0" id="se_sgst_amount_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="14" type="text" name="se_total_amt_0" id="se_total_amt_0" class="se_entry_0" value=""></td>
                         <td class="action">
                             <span  tabindex="15" id="add_more_3" style="color: green;display:none;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             <span  tabindex="16" id="123" style="color: red;" onclick="deleteRow(this)"><i class="fa fa-times" aria-hidden="true"></i></span>
@@ -136,11 +137,11 @@
                 </script>
                 <div class="form-group">
                     <div class="col-sm-offset-6 col-sm-6">
-                        <!-- <button type="" class="btn btn-default" onclick="saveSalesEntry()" id="">
-                            <i class="fa fa-btn fa-plus" onclick="saveSalesEntry()"></i>Add Sales
-                        </button> -->
-                        <span class="btn btn-default" onclick="saveSalesEntry()" id="">
-                            <i class="fa fa-btn fa-plus" onclick="saveSalesEntry()"></i>Add Sales
+                        <button type="" class="btn btn-default" id="">
+                            <i class="fa fa-btn fa-plus"></i>Add Sales
+                        </button> 
+                        <span class="btn btn-default" onclick="printBill()" id="">
+                            <i class="fa fa-file-pdf-o"></i>Invoice
                         </span>
                     </div>
                 </div>
