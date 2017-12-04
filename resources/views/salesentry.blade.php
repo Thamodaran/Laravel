@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: rgba(0, 139, 139, 0.9); color: white; font-weight: bold; font-size: 20px;">
+        <div class="panel-heading panelHeadingCustom" style="">
             Sales Entry
         </div>
 

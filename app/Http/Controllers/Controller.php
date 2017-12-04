@@ -90,7 +90,7 @@ class Controller extends BaseController {
     public function salesindex() {
 //        $salesEntryDetails = Salesentry::orderBy('created_at', 'desc')->get();
         $salesEntryDetails = Salesentry::where("se_bill_no", "=", 0)->get();
-        print"<;pre>";print_r($salesEntryDetails);exit;
+//        print"<;pre>";print_r($salesEntryDetails);exit;
         return view('salesentry', compact('salesEntryDetails'));
     }
 

@@ -4,7 +4,7 @@
     <div class="container">
         <!-- <div class="col-sm-12"> -->
       <div class="panel panel-default">
-          <div class="panel-heading">
+          <div class="panel-heading panelHeadingCustom">
               Purchase Entry
           </div>
 
