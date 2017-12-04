@@ -27,21 +27,33 @@ function setUserDetails($this) {
        }
    });
  }
-function setProductDetails() {
-  var name = $('#se_product_code option:selected').text();
-  var src = "/searchajax";
+function setProductDetails(thisElement) {
+  var nextElementId = thisElement.parentElement.nextElementSibling.children[0].id;
+  var prodId = thisElement.value;
+//  console.log(thisElement.parentElement.nextElementSibling.children[0].id);
+  var idArray = nextElementId.split("_");
+  var lastIndex = (idArray.length)-1;
+  var idLastVal = idArray[lastIndex];
+//return false;
+  var src = "/product";
    $.ajax({
-       url: src+'?term='+name,
-       dataType: "json",
+       url: src+'/'+prodId,
+//       dataType: "json",
        success: function(data) {
-         $.each( data, function( key, value ) {
-           if(value.p_product_code === name) {
-             $('#se_product_name').val(value.p_product_name);
-             $('#se_tax').val(value.p_tax);
-             $('#se_hsn_code').val(value.p_hsn_sac_code);
-             $('#se_sell_price').val(250);
-           }
-         });
+//           console.log(data);
+//         $.each( data, function( key, value ) {
+//           if(value.p_product_code === id) {
+//console.log(nextElementId);
+//console.log(nextElementIdlastIndex);
+            if($.isNumeric(idLastVal)) {
+                $('#se_product_name_'+idLastVal).val(data.p_product_name);
+                $('#se_tax_'+idLastVal).val(data.p_tax);
+                $('#se_hsn_code_'+idLastVal).val(data.p_hsn_sac_code);
+                $('#se_sell_price_'+idLastVal).val(250);                
+            }
+
+//           }
+//         });
        }
    });
 };
@@ -51,7 +63,7 @@ function addRow(new_Attribute) {
     clickCount++;
     tabIndex++;
     $('#'+new_Attribute.id).hide();
-    var newRow = '<tr id="new-row-'+clickCount+'"> <td>'+parseInt(clickCount+1)+'</td><td> <select tabindex='+tabIndex+' style="width: 100%;" id="se_product_code_'+clickCount+'" class="se_product_code se_entry_'+clickCount+'" value="" onchange="setProductDetails()" name="se_product_code_'+clickCount+'"></select> </td><td> <input tabindex='+parseInt(tabIndex+2)+' type="text" name="se_product_name_'+clickCount+'" id="se_product_name_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex="'+parseInt(tabIndex+3)+'" type="text" name="se_hsn_code_'+clickCount+'" id="se_hsn_code_'+clickCount+'" value="" class="se_entry_'+clickCount+'"> </td><td> <input tabindex="'+parseInt(tabIndex+4)+'" type="text" name="se_quantity_'+clickCount+'" id="se_quantity_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex="'+parseInt(tabIndex+5)+'" type="text" name="se_sell_price_'+clickCount+'" id="se_sell_price_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+6)+' type="text" name="se_discount_'+clickCount+'" id="se_discount_'+clickCount+'" value="" class="se_entry_'+clickCount+'"> </td><td> <input tabindex='+parseInt(tabIndex+7)+' type="text" name="se_tax_cgst_'+clickCount+'" id="se_tax_cgst_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+8)+' type="text" name="se_tax_cgst_amt_'+clickCount+'" id="se_tax_cgst_amt_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+9)+' type="text" name="se_tax_sgst_'+clickCount+'" id="se_tax_sgst_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+10)+' type="text" name="se_tax_sgst_amt_'+clickCount+'" id="se_tax_sgst_amt_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+11)+' type="text" name="se_total_amt_'+clickCount+'" id="se_total_amt_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td class="action"> <span tabindex='+parseInt(tabIndex+12)+' id="add_more_'+clickCount+'" style="color: green;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span> <span tabindex='+parseInt(tabIndex+13)+' style="color: red;" onclick="deleteRow(this)" "><i class="fa fa-times " aria-hidden="true "></i></span> </td></tr>';
+    var newRow = '<tr id="new-row-'+clickCount+'"> <td>'+parseInt(clickCount+1)+'</td><td> <select tabindex='+tabIndex+' style="width: 100%;" id="se_product_code_'+clickCount+'" class="se_product_code se_entry_'+clickCount+'" value="" onchange="setProductDetails(this)" name="se_product_code_'+clickCount+'"></select> </td><td> <input tabindex='+parseInt(tabIndex+2)+' type="text" name="se_product_name_'+clickCount+'" id="se_product_name_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex="'+parseInt(tabIndex+3)+'" type="text" name="se_hsn_code_'+clickCount+'" id="se_hsn_code_'+clickCount+'" value="" class="se_entry_'+clickCount+'"> </td><td> <input tabindex="'+parseInt(tabIndex+4)+'" type="text" name="se_quantity_'+clickCount+'" id="se_quantity_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex="'+parseInt(tabIndex+5)+'" type="text" name="se_sell_price_'+clickCount+'" id="se_sell_price_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+6)+' type="text" name="se_discount_'+clickCount+'" id="se_discount_'+clickCount+'" value="" class="se_entry_'+clickCount+'"> </td><td> <input tabindex='+parseInt(tabIndex+7)+' type="text" name="se_tax_cgst_'+clickCount+'" id="se_tax_cgst_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+8)+' type="text" name="se_tax_cgst_amt_'+clickCount+'" id="se_tax_cgst_amt_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+9)+' type="text" name="se_tax_sgst_'+clickCount+'" id="se_tax_sgst_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+10)+' type="text" name="se_tax_sgst_amt_'+clickCount+'" id="se_tax_sgst_amt_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td> <input tabindex='+parseInt(tabIndex+11)+' type="text" name="se_total_amt_'+clickCount+'" id="se_total_amt_'+clickCount+'" class="se_entry_'+clickCount+'" value=""> </td><td class="action"> <span tabindex='+parseInt(tabIndex+12)+' id="add_more_'+clickCount+'" style="color: green;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span> <span tabindex='+parseInt(tabIndex+13)+' style="color: red;" onclick="deleteRow(this)" "><i class="fa fa-times " aria-hidden="true "></i></span> </td></tr>';
     tabIndex = tabIndex+13;
     $('#detail-table').append(newRow);
     selectLoad($('#'+new_Attribute.parentNode.parentNode.id).next()[0].children[1].children[0].id);

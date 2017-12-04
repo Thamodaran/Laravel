@@ -88,7 +88,9 @@ class Controller extends BaseController {
     }
 
     public function salesindex() {
-        $salesEntryDetails = Salesentry::orderBy('created_at', 'desc')->get();
+//        $salesEntryDetails = Salesentry::orderBy('created_at', 'desc')->get();
+        $salesEntryDetails = Salesentry::where("se_bill_no", "=", 0)->get();
+        print"<;pre>";print_r($salesEntryDetails);exit;
         return view('salesentry', compact('salesEntryDetails'));
     }
 
@@ -218,6 +220,13 @@ class Controller extends BaseController {
         Monthlylist::findOrFail($id)->delete();
 
         return redirect('/monthlylistdetails');
+    }
+    
+    public function getproduct($id) {
+//        print"<pre>";print_r(intval($id));exit;
+        $product = Product::where("p_id", "=", intval($id))->first();
+//        print"<pre>";print_r($product);exit;
+        return $product;
     }
 
     public function updatemonthlylist(Request $request) {

@@ -47,7 +47,7 @@
                     </tr>
                     <tr id="new-row-0" class="newRow_0">
                         <td>1</td>
-                        <td><select tabindex="4" style="width: 100%;" id="se_product_code_0" class="se_entry_0" value="" onchange="setProductDetails()" name="se_product_code_0"></select></td>
+                        <td><select tabindex="4" style="width: 100%;" id="se_product_code_0" class="se_entry_0" value="" onchange="setProductDetails(this)" name="se_product_code_0"></select></td>
                         <td><input tabindex="5" type="text" name="se_product_name_0" id="se_product_name_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="6" type="text" name="se_hsn_code_0" id="se_hsn_code_0" value="" class="se_entry_0"></td>
                         <td><input tabindex="7" type="text" name="se_quantity_0" onkeyup="calculateAmount()" id="se_quantity_0" class="se_entry_0" value=""></td>
@@ -151,7 +151,6 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Current Tasks
-            {{$salesEntryDetails}}
         </div>
         @if (count($salesEntryDetails) > 0)
         <div class="panel-body">

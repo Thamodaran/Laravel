@@ -55,7 +55,9 @@ Route::group(['middleware' => ['web']], function () {
     //
     // Route::delete('/planuser/{id}', 'Controller@destroy');
 
-    Route::get('/product', 'Controller@productindex');
+//    Route::get('/product', 'Controller@productindex');
+
+    Route::get('/product/{prodId}', 'Controller@getproduct');
 
     Route::post('/product', 'Controller@storeproduct');
 
@@ -88,8 +90,6 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::post('/sales', function(){
         $endValues = array();
-//        print"<pre>";print_r($_POST['se_customer_user']);
-//        print"<pre>";print_r($_POST['se_customer_user']);exit;
         foreach ($_POST as $key => $sale) {
             $splitArr = explode('_', $key);
             $endVal = end($splitArr);
