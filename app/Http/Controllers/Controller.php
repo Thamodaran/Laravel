@@ -89,8 +89,10 @@ class Controller extends BaseController {
 
     public function salesindex() {
 //        $salesEntryDetails = Salesentry::orderBy('created_at', 'desc')->get();
-        $salesEntryDetails = Salesentry::where("se_bill_no", "=", 0)->get();
-//        print"<;pre>";print_r($salesEntryDetails);exit;
+        // $salesEntryDetails = Salesentry::where("se_bill_no", "=", 0)->get();
+        $salesEntryDetails = Salesentry::join('products', 'p_id', '=', 'se_product_id')
+                                        ->join('users', 'u_id', '=', 'se_user_id')->where("se_bill_no", "=", 0)->get();
+      //  print"<pre>";print_r($salesEntryDetails);exit;
         return view('salesentry', compact('salesEntryDetails'));
     }
 
@@ -139,12 +141,16 @@ class Controller extends BaseController {
     }
 
     public function pdfsales() {
-        $lastOrder = Order::orderBy('created_at', 'desc')->first();
-        $salesentry = Salesentry::where("se_bill_no", '=', $lastOrder->o_id)->get();
+        $lastOrder = Order::orderBy('created_at', 'desc')->first();        
+        if(!empty($lastOrder)) {
+            $salesentry = Salesentry::where("se_bill_no", '=', $lastOrder->o_id)->get();
+        } else {
+            $salesentry = array();
+        }
         $pdf = PDF::loadView('pdfview', compact('salesentry'));
         return $pdf->stream('pdfview.pdf');
     }
-    
+
     public function storeOrder(Request $request) {
         $order = new Order;
         $order->o_user_id = $request->userId;
@@ -221,7 +227,7 @@ class Controller extends BaseController {
 
         return redirect('/monthlylistdetails');
     }
-    
+
     public function getproduct($id) {
 //        print"<pre>";print_r(intval($id));exit;
         $product = Product::where("p_id", "=", intval($id))->first();
@@ -241,26 +247,6 @@ class Controller extends BaseController {
 //      Monthlylist::findOrFail($id)->delete();
 //
 //      return redirect('/monthlylistdetails');
-    }
-
-    public function storemonthlyamount(Request $request) {
-//        print_r($request->monthlyamount_id);exit;
-//        var_dump($request->monthlyamount_id);exit;
-        if ($request->monthlyamount_id === '') {
-            $monthlyamount = new Monthlyamount;
-            $monthlyamount->total_tallu_amt = intval($request->total_tallu_amt);
-            $monthlyamount->plan_id = intval($request->plan_id);
-            $now = new \DateTime('now');
-            $monthlyamount->month = $now->format('F');
-            $monthlyamount->save();
-        } else {
-            $monthlyamountedit = Monthlyamount::where('id', '=', $request->monthlyamount_id)->first();
-            if ($request->total_tallu_amt !== '') {
-                $monthlyamountedit->total_tallu_amt = intval($request->total_tallu_amt);
-                $monthlyamountedit->save();
-            }
-        }
-        return redirect('/monthlylist');
     }
 
     public function import(Request $request) {

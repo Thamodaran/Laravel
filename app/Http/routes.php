@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web']], function () {
     //
     // Route::delete('/planuser/{id}', 'Controller@destroy');
 
-//    Route::get('/product', 'Controller@productindex');
+   Route::get('/product', 'Controller@productindex');
 
     Route::get('/product/{prodId}', 'Controller@getproduct');
 
@@ -113,7 +113,7 @@ Route::group(['middleware' => ['web']], function () {
         }
       return redirect('/sales');
     });
-    
+
     Route::get('/searchcustomer', function(){
         $products = array();
         if(isset($_GET['term'])) {
@@ -131,7 +131,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/importusers', 'Controller@importplanusers');
 
     Route::get('/pdf', 'Controller@pdfsales');
-    
+
     Route::post('/order', 'Controller@storeOrder');
 
     /**

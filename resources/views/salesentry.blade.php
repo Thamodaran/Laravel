@@ -8,7 +8,7 @@
         </div>
 
         <div class="panel-body">
-             <form action="{{ url('sales')}}" method="POST" class="form-horizontal"> 
+             <form action="{{ url('sales')}}" method="POST" class="form-horizontal">
             <!--<form action="" method="" class="form-horizontal">-->
                 {{csrf_field()}}
                 <table border="1" style="width: 100%;" class="customer-table">
@@ -139,7 +139,7 @@
                     <div class="col-sm-offset-6 col-sm-6">
                         <button type="" class="btn btn-default" id="">
                             <i class="fa fa-btn fa-plus"></i>Add Sales
-                        </button> 
+                        </button>
                         <span class="btn btn-default" onclick="printBill()" id="">
                             <i class="fa fa-file-pdf-o"></i>Invoice
                         </span>
@@ -157,21 +157,34 @@
             <table class="table table-striped task-table">
                 <thead>
                 <th>Product Code</th>
-                <th>Mobile Number</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                <th>Plan</th>
-                <th>Action</th>
+                <th>Product Name</th>
+                <th>HSN/SAC Code</th>
+                <th>Quantity</th>
+                <th>Sale Price</th>
+                <th>Discount</th>
+                <th>CGST (%)</th>
+                <th>CGST Amt</th>
+                <th>SGST (%)</th>
+                <th>SGST Amt</th>
+                <th>Amount</th>
+                <th>Total Amount</th>
                 </thead>
                 <tbody>
 
                     @foreach ($salesEntryDetails as $salesEntry)
                     <tr>
-                        <td class="table-text"><div>{{$salesEntry->se_product_id}}</div></td>
-                        <td class="table-text"><div>{{$salesEntry->se_user_id}}</div></td>
+                        <td class="table-text"><div>{{$salesEntry->p_product_code}}</div></td>
+                        <td class="table-text"><div>{{$salesEntry->p_product_name}}</div></td>
+                        <td class="table-text"><div>{{$salesEntry->p_hsn_sac_code}}</div></td>
                         <td class="table-text"><div>{{$salesEntry->se_quantity}}</div></td>
+                        <td class="table-text"><div>Sale Price</div></td>
+                        <td class="table-text"><div>{{$salesEntry->u_discount}}</div></td>
+                        <td class="table-text"><div>{{$salesEntry->p_cgst_percentage}}</div></td>
+                        <td class="table-text"><div>{{$salesEntry->se_cgst_amount}}</div></td>
+                        <td class="table-text"><div>{{$salesEntry->p_sgst_percentage}}</div></td>
+                        <td class="table-text"><div>{{$salesEntry->se_sgst_amount}}</div></td>
                         <td class="table-text"><div>{{$salesEntry->se_total_amt}}</div></td>
-                        <td class="table-text"><div>{{$salesEntry->se_amt_given}}</div></td>
+                        <td class="table-text"><div>Order Amt</div></td>
                         <!-- Task Delete Button -->
                         <td>
                             <form action="{{ url('planuser/') }}" method="POST">
