@@ -141,8 +141,8 @@ class Controller extends BaseController {
     }
 
     public function pdfsales() {
-        $lastOrder = Order::orderBy('created_at', 'desc')->first();        
-        if(!empty($lastOrder)) {
+        $lastOrder = Order::orderBy('created_at', 'desc')->first();
+        if(count($lastOrder) > 0) {
             $salesentry = Salesentry::where("se_bill_no", '=', $lastOrder->o_id)->get();
         } else {
             $salesentry = array();

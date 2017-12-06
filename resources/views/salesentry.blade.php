@@ -50,13 +50,13 @@
                         <td><select tabindex="4" style="width: 100%;" id="se_product_code_0" class="se_entry_0" value="" onchange="setProductDetails(this)" name="se_product_code_0"></select></td>
                         <td><input tabindex="5" type="text" name="se_product_name_0" id="se_product_name_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="6" type="text" name="se_hsn_code_0" id="se_hsn_code_0" value="" class="se_entry_0"></td>
-                        <td><input tabindex="7" type="text" name="se_quantity_0" onkeyup="calculateAmount()" id="se_quantity_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="7" type="text" name="se_quantity_0" onkeyup="calculateAmount(this)" id="se_quantity_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="8" type="text" name="se_sell_price_0" id="se_sell_price_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="9" type="text" name="se_discount_0" id="se_discount_0" value="" class="se_entry_0"></td>
-                        <td><input tabindex="10" type="text" name="p_tax_cgst_0" id="p_tax_cgst_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="11" type="text" name="se_tax_cgst_amt_0" id="se_cgst_amount_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="12" type="text" name="p_tax_sgst_0" id="p_tax_sgst_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="13" type="text" name="se_tax_sgst_amt_0" id="se_sgst_amount_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="9" type="text" name="se_discount_0" onkeyup="calculateAmount(this)" id="se_discount_0" value="" class="se_entry_0"></td>
+                        <td><input tabindex="10" type="text" name="se_tax_cgst_0" onkeyup="calculateAmount(this)" id="se_tax_cgst_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="11" type="text" name="se_tax_cgst_amt_0" id="se_tax_cgst_amt_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="12" type="text" name="se_tax_sgst_0" onkeyup="calculateAmount(this)" id="se_tax_sgst_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="13" type="text" name="se_tax_sgst_amt_0" id="se_tax_sgst_amt_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="14" type="text" name="se_total_amt_0" id="se_total_amt_0" class="se_entry_0" value=""></td>
                         <td class="action">
                             <span  tabindex="15" id="add_more_3" style="color: green;display:none;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span>

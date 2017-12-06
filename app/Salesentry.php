@@ -1,9 +1,7 @@
 <?php
 
 namespace App;
-use App\Product;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
 
 class Salesentry extends Model
 {
