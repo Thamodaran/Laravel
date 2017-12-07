@@ -32,7 +32,7 @@
             <div class="container-fluid" style="margin-left: 0px;padding: 20px 0 0 0;">
                 <div class="navbar-header">
                      <a class="navbar-brand" href="{{ url('/') }}">
-                        
+
                     </a>
                 </div>
                 <!--<marquee><span>This is billing software by Thamodaran K..!</span></marquee>-->
@@ -54,6 +54,11 @@
                         <a class="" href="{{ url('/product') }}">
                             Add Products
                         </a>
+                        <ul class="components" style="0 20px 0 30px !important;list-style: none; ">
+                          <li>
+                            <a class="" href="{{ url('/productlist') }}">Product List</a>
+                          </li>
+                        </ul>
                     </li>
                     <li>
                         <a class="" href="{{ url('/sales') }}">

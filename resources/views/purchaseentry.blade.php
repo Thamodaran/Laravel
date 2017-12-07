@@ -22,9 +22,11 @@
               <input type="text" name="pe_product_name" id="pe_product_name" class="form-control" value="">
             </div>
             <div class="col-sm-6">
-              <label for="pwd">Customer Name:</label>
-              <input type="text" name="pe_customer_user" id="pe_customer_user" class="form-control" value="">
-              <input type="hidden" name="pe_user_id" id="pe_user_id" class="form-control" value="">
+              <label for="pwd">Dealer:</label>
+              <select name="pe_dealer" class="form-control">
+                <option value="0">Select a Dealer</option>
+                <option value=""></option>
+              </select>
             </div>
             <div class="col-sm-6">
               <label for="pwd">Buy Price:</label>

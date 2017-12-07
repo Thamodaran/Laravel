@@ -49,7 +49,7 @@ Route::group(['middleware' => ['web']], function () {
 
         return redirect('/');
     });
-    Route::get('/', 'Controller@index');
+    Route::get('/', 'Controller@highchart');
 
     // Route::post('/planuser', 'Controller@store');
     //
@@ -60,6 +60,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/product/{prodId}', 'Controller@getproduct');
 
     Route::post('/product', 'Controller@storeproduct');
+
+    Route::get('/productlist', 'Controller@productlist');
 
     Route::delete('/product/{id}', 'Controller@destroyproduct');
 

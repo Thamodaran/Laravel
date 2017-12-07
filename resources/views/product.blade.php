@@ -55,45 +55,6 @@
           </form>
         </div>
       </div>
-      <div class="panel panel-default">
-          <div class="panel-heading">
-              Current Tasks
-          </div>
-
-          <div class="panel-body">
-              <table class="table table-striped task-table">
-                  <thead>
-                      <th>Task</th>
-                      <th>Mobile Number</th>
-                      <th>Phone Number</th>
-                      <th>Address</th>
-                      <th>Plan</th>
-                      <th>Action</th>
-                  </thead>
-                  <tbody>
-                          <tr>
-                              <td class="table-text"><div>name</div></td>
-                              <td class="table-text"><div>mobile number</div></td>
-                              <td class="table-text"><div>ph number</div></td>
-                              <td class="table-text"><div>address</div></td>
-                              <td class="table-text"><div>plan</div></td>
-
-                              <!-- Task Delete Button -->
-                              <td>
-                                  <form action="{{ url('planuser/') }}" method="POST">
-                                      {{ csrf_field() }}
-                                      {{ method_field('DELETE') }}
-
-                                      <button type="submit" class="btn btn-danger">
-                                          <i class="fa fa-btn fa-trash"></i>
-                                      </button>
-                                  </form>
-                              </td>
-                          </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
     </div>
     <!-- </div> -->
 @endsection

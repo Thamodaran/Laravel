@@ -50,9 +50,13 @@ class Controller extends BaseController {
         return view('product');
     }
 
+    public function productlist() {
+      $products = Product::orderBy('created_at', 'desc')->get();
+        return view('productlist', compact('products'));
+    }
+
     public function storeproduct(Request $request) {
         $product = new Product;
-        die;
         $product->p_product_name = $request->p_product_name;
         $product->p_product_code = $request->p_product_code;
         $product->p_product_model = $request->p_product_model;
@@ -272,5 +276,39 @@ class Controller extends BaseController {
         }
         return redirect('/');
     }
+
+    public function highchart()
+
+{
+  return view('highchart');
+    // $viewer = View::select(DB::raw("SUM(numberofview) as count"))
+    //
+    //     ->orderBy("created_at")
+    //
+    //     ->groupBy(DB::raw("year(created_at)"))
+    //
+    //     ->get()->toArray();
+    //
+    // $viewer = array_column($viewer, 'count');
+    //
+    //
+    //
+    // $click = Click::select(DB::raw("SUM(numberofclick) as count"))
+    //
+    //     ->orderBy("created_at")
+    //
+    //     ->groupBy(DB::raw("year(created_at)"))
+    //
+    //     ->get()->toArray();
+    //
+    // $click = array_column($click, 'count');
+    //
+    // return view('highchart')
+    //
+    //         ->with('viewer',json_encode($viewer,JSON_NUMERIC_CHECK))
+    //
+    //         ->with('click',json_encode($click,JSON_NUMERIC_CHECK));
+
+}
 
 }
