@@ -15,6 +15,9 @@
         <link href="/css/select2-4.0.4.min.css" rel="stylesheet" />
         <script src="/js/custom.js"></script>
         <script src="/js/bootstrap-3.3.7.min.js"></script>
+        <script src="/js/highcharts.js"></script>
+        <script src="/js/highcharts-3d.js"></script>
+        <script src="js/exporting.js"></script>
         <script>
         $(document).ready(function () {
             $("select").focus(function(){

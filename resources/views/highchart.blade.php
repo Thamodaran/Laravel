@@ -1,13 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-<div id="productContainer" style="min-width: 510px; height: 410px; max-width: 600px; margin: 0 auto;border: 1px solid gray;"></div>
-<div id="customerContainer" style="min-width: 510px; height: 410px; max-width: 600px; margin: 0 auto;border: 1px solid gray;"></div>
-
+<style>
+    .header {
+        background-color: black !important;
+        height: 10%;
+    }
+    .outer-header {
+        width: 45%;
+        height: 50%;
+        border: 1px solid black;
+        margin-left: 20px; 
+        float: left;
+        border: 1px solid #ddd;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+</style>
+<div style="width: 100%;">
+    <div class="outer-header">
+        <div class="main-menu panel-heading"></div>
+        <div id="productContainer" style="width: 100%; float: left; height: 410px; margin: 0 auto;"></div>
+    </div>
+    <div class="outer-header">
+        <div class="main-menu panel-heading"></div>
+        <div id="customerContainer" style="width: 100%;float: left; height: 410px; margin: 0 auto;"></div>
+    </div>
+    <div class="outer-header">
+        <div class="main-menu panel-heading"></div>
+        <div id="expenseContainer" style="width: 100%; height: 410px; margin: 0 auto;"></div>
+    </div>
+    
+    
+</div>
 <script type="text/javascript">
 
 
@@ -105,21 +129,65 @@ Highcharts.chart('customerContainer', {
   series: [{
       name: 'Brands',
       data: [
-          { name: 'Monitor', y: 56.33 },
+          { name: 'IOB Bank', y: 56.33 },
           {
-              name: 'KeyBoard',
+              name: 'Indian Bank',
               y: 24.03,
               sliced: true,
               selected: true
           },
-          { name: 'Laptop', y: 10.38 },
-          { name: 'PenDrive', y: 4.77 },
-          { name: 'Printer', y: 0.91 },
-          { name: 'Mouse', y: 0.2 }
+          { name: 'Kiruba', y: 10.38 },
+          { name: 'Axis Bank', y: 4.77 },
+          { name: 'IIT Institute', y: 0.91 },
+          { name: 'Anna University', y: 0.2 }
       ]
   }]
 });
 
+Highcharts.chart('expenseContainer', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+        }
+    },
+    title: {
+        text: 'Browser market shares at a specific website, 2014'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
+    },
+    series: [{
+        type: 'pie',
+        name: 'Browser share',
+        data: [
+            ['Firefox', 45.0],
+            ['IE', 26.8],
+            {
+                name: 'Chrome',
+                y: 12.8,
+                sliced: true,
+                selected: true
+            },
+            ['Safari', 8.5],
+            ['Opera', 6.2],
+            ['Others', 0.7]
+        ]
+    }]
+    });
 </script>
 
 @endsection
