@@ -75,7 +75,9 @@
     </head>
     <body>';
     ?><!-- <img border: 1px solid black; src="/var/www/html/new-laravel/public/images/regnumbers.jpeg"> -->        
-        <?php $content .='<div style="border: 1px solid black; height: 930px;">
+        <?php 
+        $currDate = date("Y/m/d");
+        $content .='<div style="border: 1px solid black; height: 930px;">
             <div style="border-bottom: 1px solid black; width: 100%; height: 150px;">
                 <table border="0" class="pading-text-left-5" >
                     <tr>
@@ -88,7 +90,8 @@
                         <td colspan="4" class="text-align-center" style="text-decoration: underline;font-size: 14px;font-weight: bold;"> TAX INVOICE </td>
                     </tr>
                     <tr>
-                        <td colspan="4" class="text-align-center" style="font-size: 25px;font-weight: bold;">I - Fix Computers</td>
+                        <td></td>
+                        <!-- <td colspan="4" class="text-align-center" style="font-size: 25px;font-weight: bold;">I - Fix Computers</td>  -->
                     </tr>
                     <tr>
                         <td colspan="4" class="text-align-center" style="font-size: 14px;font-weight: bold;">No.4/56, SEEVARAM 3rd STREET,</td>
@@ -108,7 +111,7 @@
                         <tr>
                             <td style="width: 130px;font-weight: bold;font-style: italic;">Party Details</td>
                             <td style="width: 10px;font-weight: bold;">:</td>
-                            <td style="">Thamodaran</td>
+                            <td style="">'.$salesentry[0]->u_name.'</td>
                         </tr>
                         <tr>
                             <td style="width: 130px;">&nbsp;</td>
@@ -118,7 +121,7 @@
                         <tr>
                             <td style="width: 130px;">Party Mobile No</td>
                             <td style="">:</td>
-                            <td style="">9566066795</td>
+                            <td style="">'.$salesentry[0]->u_mob_number.'</td>
                         </tr>
                         <tr>
                             <td style="width: 130px;">GSTIN</td>
@@ -137,12 +140,12 @@
                         <tr>
                             <td style="width: 130px;">Dated</td>
                             <td style="width: 10px;">:</td>
-                            <td style="">01-11-2017</td>
+                            <td style="">'.$currDate.'</td>
                         </tr>
                         <tr>
                             <td style="width: 130px;">Place of supply</td>
                             <td style="width: 10px;">:</td>
-                            <td style="">Tamilnadu</td>
+                            <td style="">'.$salesentry[0]->u_address.'</td>
                         </tr>
                         <tr>
                             <td style="width: 130px;">&nbsp;</td>
@@ -174,6 +177,7 @@
             ?>
                         @if(count($salesentry) <= 0) 
                             @foreach ($salesentry as $sales)
+                                
                                 <?php $content .= '<tr style="">
                                             <td style="font-size: 13px; border-right: 1px solid black;">1</td>
                                             <td style="font-size: 13px; border-right: 1px solid black;">Description</td>
@@ -190,20 +194,20 @@
                                         ?>
                             @endforeach                            
                         @endif
-                        <?php $sino = 1;?>
-                        @foreach ($salesentry  as $sno => $sales)
+                        <?php $sino = 1; /** print"<pre>";print_r($salesentry);exit; */?>
+                        @foreach ($salesentry  as $sno => $sales)                            
                             <?php $content .= '<tr style="">
                                 <td style="font-size: 13px; border-right: 1px solid black;">'.$sino.'</td>
-                                <td style="font-size: 13px; border-right: 1px solid black;">Description</td>
-                                <td style="font-size: 13px; border-right: 1px solid black;">3891</td>
-                                <td style="font-size: 13px; border-right: 1px solid black;">5</td>
-                                <td style="font-size: 13px; border-right: 1px solid black;">1500</td>
+                                <td style="font-size: 13px; border-right: 1px solid black;">'.$sales->p_product_name.'</td>
+                                <td style="font-size: 13px; border-right: 1px solid black;">'.$sales->p_hsn_sac_code.'</td>
+                                <td style="font-size: 13px; border-right: 1px solid black;">'.$sales->se_quantity.'</td>
+                                <td style="font-size: 13px; border-right: 1px solid black;">'.$sales->pe_sell_price.'</td>
                                 <td style="font-size: 13px; border-right: 1px solid black;">10</td>
                                 <td style="font-size: 13px; border-right: 1px solid black;">10</td>
+                                <td style="font-size: 13px; border-right: 1px solid black;">'.$sales->se_cgst_amount.'</td>
                                 <td style="font-size: 13px; border-right: 1px solid black;">10</td>
-                                <td style="font-size: 13px; border-right: 1px solid black;">10</td>
-                                <td style="font-size: 13px; border-right: 1px solid black;">18</td>
-                                <td style="font-size: 13px; border: 0px;">25000</td>
+                                <td style="font-size: 13px; border-right: 1px solid black;">'.$sales->se_sgst_amount.'</td>
+                                <td style="font-size: 13px; border: 0px;">'.$sales->se_total_amt.'</td>
                             </tr>';
                             $sino ++;
                             ?>

@@ -133,21 +133,19 @@ class Controller extends BaseController {
     }
 
     public function searchproduct($term) {
-//       print_($_GET['q']);exit;
-//      print_($term);exit;
         $products = Product::where('p_product_name', 'LIKE', '%' . $name . '%')->get();
         print_r($products);
         exit;
         return $products;
-        // return view('product', compact('products');
-        // print_r($products);
-        // exit;
     }
 
     public function pdfsales() {
         $lastOrder = Order::orderBy('created_at', 'desc')->first();
         if(count($lastOrder) > 0) {
-            $salesentry = Salesentry::where("se_bill_no", '=', $lastOrder->o_id)->get();
+        $salesentry = Salesentry::join('products', 'p_id', '=', 'se_product_id')
+                                    ->join('users', 'u_id', '=', 'se_user_id')
+                                    ->join('purchaseentries', 'pe_product_id', '=', 'p_id')
+                                    ->where("se_bill_no", '=', $lastOrder->o_id)->get();
         } else {
             $salesentry = array();
         }
