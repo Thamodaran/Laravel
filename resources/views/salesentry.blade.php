@@ -57,7 +57,7 @@
                         <td><input tabindex="11" type="text" name="se_tax_cgst_amt_0" id="se_tax_cgst_amt_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="12" type="text" name="se_tax_sgst_0" onkeyup="calculateAmount(this)" id="se_tax_sgst_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="13" type="text" name="se_tax_sgst_amt_0" id="se_tax_sgst_amt_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="14" type="text" name="se_total_amt_0" id="se_total_amt_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="14" type="text" name="se_total_amt_0" onkeyup="calculateTotalAmount(this)" id="se_total_amt_0" class="se_entry_0" value=""></td>
                         <td class="action">
                             <span  tabindex="15" id="add_more_3" style="color: green;display:none;" onclick="addRow(this)"><i class="fa fa-plus" aria-hidden="true"></i></span>
                             <span  tabindex="16" id="123" style="color: red;" onclick="deleteRow(this)"><i class="fa fa-times" aria-hidden="true"></i></span>
@@ -77,7 +77,7 @@
                         <td class="width-5-per">&nbsp;</td>
                         <td class="width-5-per">&nbsp;</td>
                         <th class="width-5-per" style="text-align: right;">Total</th>
-                        <td class="width-10-per">15222</td>
+                        <td class="width-10-per" id="total_amount">0.0</td>
                         <td class="width-5-per"></td>
                     </tr>
                     <tr>
@@ -172,6 +172,7 @@
                 <tbody>
 
                     @foreach ($salesEntryDetails as $salesEntry)
+                      
                     <tr>
                         <td class="table-text"><div>{{$salesEntry->p_product_code}}</div></td>
                         <td class="table-text"><div>{{$salesEntry->p_product_name}}</div></td>

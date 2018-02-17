@@ -99,6 +99,7 @@ Route::group(['middleware' => ['web']], function () {
                 $endValues[$endVal][$key] = $sale;
             }
         }
+        // print"<pre>";print_r($endValues);exit;
         foreach ($endValues as $key => $endValue) {
             if(is_numeric($key)){
                 $salesEntry = new Salesentry;
