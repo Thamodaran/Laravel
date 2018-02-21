@@ -106,11 +106,14 @@ Route::group(['middleware' => ['web']], function () {
                 $salesEntry->se_product_id  = $endValue['se_product_code_'.$key.''];
                 $salesEntry->se_user_id  = $_POST['se_customer_user'];//$request->get('se_customer_user');
                 $salesEntry->se_quantity = $endValue['se_quantity_'.$key.''];
-                $salesEntry->se_amt_given  = 5000;//$endValue['se_amt_given_'.$key.''];
-                $salesEntry->se_balance  = 200;//$request->get('se_balance');
+                // $salesEntry->se_amt_given  = $endValue['se_amt_given_'.$key.''];
+                // $salesEntry->se_balance  = 200;//$request->get('se_balance');
                 $salesEntry->se_cgst_amount  = $endValue['se_tax_cgst_amt_'.$key.''];
                 $salesEntry->se_sgst_amount  = $endValue['se_tax_sgst_amt_'.$key.''];
                 $salesEntry->se_total_amt  = $endValue['se_total_amt_'.$key.''];
+                $salesEntry->se_discount  = $endValue['se_discount_'.$key.''];
+                $salesEntry->se_cgst_tax_per  = $endValue['se_tax_cgst_per_'.$key.''];
+                $salesEntry->se_sgst_tax_per  = $endValue['se_tax_sgst_per_'.$key.''];
                 $salesEntry->save();
             }
         }

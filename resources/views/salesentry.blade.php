@@ -53,9 +53,9 @@
                         <td><input tabindex="7" type="text" name="se_quantity_0" onkeyup="calculateAmount(this)" id="se_quantity_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="8" type="text" name="se_sell_price_0" id="se_sell_price_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="9" type="text" name="se_discount_0" onkeyup="calculateAmount(this)" id="se_discount_0" value="" class="se_entry_0"></td>
-                        <td><input tabindex="10" type="text" name="se_tax_cgst_0" onkeyup="calculateAmount(this)" id="se_tax_cgst_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="10" type="text" name="se_tax_cgst_per_0" onkeyup="calculateAmount(this);" id="se_tax_cgst_per_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="11" type="text" name="se_tax_cgst_amt_0" id="se_tax_cgst_amt_0" class="se_entry_0" value=""></td>
-                        <td><input tabindex="12" type="text" name="se_tax_sgst_0" onkeyup="calculateAmount(this)" id="se_tax_sgst_0" class="se_entry_0" value=""></td>
+                        <td><input tabindex="12" type="text" name="se_tax_sgst_per_0" onkeyup="calculateAmount(this);" id="se_tax_sgst_per_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="13" type="text" name="se_tax_sgst_amt_0" id="se_tax_sgst_amt_0" class="se_entry_0" value=""></td>
                         <td><input tabindex="14" type="text" name="se_total_amt_0" onkeyup="calculateTotalAmount(this)" id="se_total_amt_0" class="se_entry_0" value=""></td>
                         <td class="action">
@@ -77,12 +77,16 @@
                         <td class="width-5-per">&nbsp;</td>
                         <td class="width-5-per">&nbsp;</td>
                         <th class="width-5-per" style="text-align: right;">Total</th>
-                        <td class="width-10-per" id="total_amount">0.0</td>
+                        <td class="width-10-per" id="total_amount">
+                            <input type="text" name="total_amt" id="total_amt" readonly class="" value="">
+                        </td>
                         <td class="width-5-per"></td>
                     </tr>
                     <tr>
                         <th colspan="11" style="text-align: right;">Total Tax (%)</th>
-                        <td>20</td>
+                        <td>
+                            <input type="text" name="total_tax" id="total_tax" readonly class="" value="">
+                        </td>
                         <td></td>
                     </tr>
                     <tr>
@@ -159,8 +163,8 @@
                 <th>Product Code</th>
                 <th>Product Name</th>
                 <th>HSN/SAC Code</th>
-                <th>Quantity</th>
                 <th>Sale Price</th>
+                <th>Quantity</th>
                 <th>Discount</th>
                 <th>CGST (%)</th>
                 <th>CGST Amt</th>
@@ -170,22 +174,33 @@
                 <th>Total Amount</th>
                 </thead>
                 <tbody>
-
+                    <?php 
+                        $totalAmt = 0; 
+                        $totalCgstPer = 0; 
+                        $totalSgstPer = 0; 
+                        $totalCgstAmt = 0; 
+                        $totalSgstAmt = 0; 
+                    ?>
                     @foreach ($salesEntryDetails as $salesEntry)
-                      
+                        <?php 
+                            $totalAmt += $salesEntry->se_total_amt; 
+                            $totalCgstPer += $salesEntry->se_cgst_tax_per; 
+                            $totalSgstPer += $salesEntry->se_sgst_tax_per; 
+                            $totalCgstAmt += $salesEntry->se_cgst_amount; 
+                            $totalSgstAmt += $salesEntry->se_sgst_amount; 
+                        ?>
                     <tr>
                         <td class="table-text"><div>{{$salesEntry->p_product_code}}</div></td>
                         <td class="table-text"><div>{{$salesEntry->p_product_name}}</div></td>
                         <td class="table-text"><div>{{$salesEntry->p_hsn_sac_code}}</div></td>
-                        <td class="table-text"><div>{{$salesEntry->se_quantity}}</div></td>
                         <td class="table-text"><div>Sale Price</div></td>
-                        <td class="table-text"><div>{{$salesEntry->u_discount}}</div></td>
-                        <td class="table-text"><div>{{$salesEntry->p_cgst_percentage}}</div></td>
-                        <td class="table-text"><div>{{$salesEntry->se_cgst_amount}}</div></td>
-                        <td class="table-text"><div>{{$salesEntry->p_sgst_percentage}}</div></td>
-                        <td class="table-text"><div>{{$salesEntry->se_sgst_amount}}</div></td>
-                        <td class="table-text"><div>{{$salesEntry->se_total_amt}}</div></td>
-                        <td class="table-text"><div>Order Amt</div></td>
+                        <td class="table-text align-right"><div>{{$salesEntry->se_quantity}}</div></td>                        
+                        <td class="table-text align-right"><div>{{number_format($salesEntry->se_discount, 2)}}</div></td>
+                        <td class="table-text align-right"><div>{{number_format($salesEntry->se_cgst_tax_per, 2)}}</div></td>
+                        <td class="table-text align-right"><div>{{number_format($salesEntry->se_cgst_amount, 2)}}</div></td>
+                        <td class="table-text align-right"><div>{{number_format($salesEntry->se_sgst_tax_per,2)}}</div></td>
+                        <td class="table-text align-right"><div>{{number_format($salesEntry->se_sgst_amount, 2)}}</div></td>
+                        <td class="table-text align-right"><div>{{number_format($salesEntry->se_total_amt, 2)}}</div></td>
                         <!-- Task Delete Button -->
                         <td>
                             <form action="{{ url('planuser/') }}" method="POST">
@@ -198,6 +213,14 @@
                         </td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td class="table-text align-right" colspan="6"><div>Total </div></td>
+                        <td class="table-text align-right"><div><?php echo number_format($totalCgstPer, 2); ?></div></td>
+                        <td class="table-text align-right"><div><?php echo number_format($totalCgstAmt, 2); ?></div></td>
+                        <td class="table-text align-right"><div><?php echo number_format($totalSgstPer, 2); ?></div></td>
+                        <td class="table-text align-right"><div><?php echo number_format($totalSgstAmt, 2); ?></div></td>
+                        <td class="table-text align-right"><div><?php echo number_format($totalAmt, 2); ?></div></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

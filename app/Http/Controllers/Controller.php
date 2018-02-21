@@ -160,6 +160,7 @@ class Controller extends BaseController {
         $order->o_cgst_total_amt = 25;
         $order->o_total_amt = $request->amountGiven;
         $order->o_order_date = Date('2017-12-25');
+        $order->o_amt_given = 2500;
         $order->save();
         $lastOrder = Order::orderBy('created_at', 'desc')->first();
         Salesentry::where('se_bill_no','=', 0)->update(['se_bill_no' => $lastOrder->o_id]);

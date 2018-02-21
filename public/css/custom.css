@@ -129,3 +129,6 @@ a[data-toggle="collapse"] {
 .panelHeadingCustom {
     background-color: rgba(0, 139, 139, 0.9) !important; color: white !important; font-weight: bold; font-size: 20px;
 }
+.align-right {
+    text-align: right;
+}
